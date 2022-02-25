@@ -152,45 +152,66 @@ export const sections = [
 
 export default function Page() {
   return (
-    <div className="mt-10 flex flex-col items-center">
-      <ul>
-        <h1 className="text-3xl">Web3 by Example</h1>
-        <p className="text-xl my-5">
-          Web3 is for the next generation of blockchain applications.
-        </p>
-        <p className="text-xl my-5">
-          Web3 to interact with the Ethereum blockchain.
-        </p>
-        {sections.map((s, i) => (
-          <li key={i} className="my-1">
-            <h2 className="text-2xl">{s[0].category}</h2>
-            <ul className="underline">
-              {s.map((item, j) => (
-                <li key={j}>
-                  <Link href={item.link}>{item.title}</Link>
-                </li>
-              ))}
-            </ul>
-          </li>
-        ))}
-      </ul>
-      <p className="text-gray-500 my-10">
+    <div className="flex flex-col font-mono justify-center items-center divide-y-4 divide-black">
+      <p className="text-3xl uppercase font-bold mb-1">Web3 by Example</p>
+      <div>
+        <div className="my-6 mx-auto text-lg">
+          <a
+            className="underline"
+            href="https://a16z.com/2019/11/12/the-end-of-centralization-and-the-future-of-trust/"
+          >
+            Web3
+          </a>{" "}
+          is an idea for a new iteration of the World Wide Web based on
+          blockchain technology, which incorporates concepts including
+          decentralization and token-based economics.
+        </div>
+        <div className="my-6 mx-auto text-lg">
+          Web3 by Example is a hands-on introduction to web3 development using
+          annotated example programs. Check out the{" "}
+          <a className="underline" href="/account-balances">
+            first example
+          </a>{" "}
+          or browse the full list below.
+        </div>
+
+        <div>
+          {sections.map((s, i) => (
+            <div key={i} className="my-1">
+              <div className="text-xl font-semibold mt-3">{s[0].category}</div>
+              <div className="indent-4">
+                {s.map((item, j) => (
+                  <div className="mt-2">
+                    <Link key={j} href={item.link}>
+                      {item.title}
+                    </Link>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="w-full text-center my-3 pt-1">
         by
-        <a className="underline" href="https://twitter.com/dao_leno">
+        <a className="underline mx-2" href="https://twitter.com/dao_leno">
           @daoleno
         </a>
         |
         <a
-          className="underline"
-          href="https://github.com/daoleno/web3-by-example"
+          className="underline mx-2"
+          href="https://github.com/daoleno/web3byexample"
         >
           source
         </a>
         |
-        <a className="underline" href="https://example.com">
+        <a
+          className="underline mx-2"
+          href="https://github.com/daoleno/web3byexample/blob/main/LICENSE"
+        >
           license
         </a>
-      </p>
+      </div>
     </div>
   );
 }
