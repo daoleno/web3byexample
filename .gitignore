@@ -1,3 +1,4 @@
 .next
+examples/.env
 node_modules
 out

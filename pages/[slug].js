@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
-import theme from "shiki/themes/one-dark-pro.json";
+import theme from "shiki/themes/material-palenight.json";
 import fs from "fs";
 import { remarkCodeHike } from "@code-hike/mdx";
 import { getMDXComponent } from "mdx-bundler/client";
@@ -22,13 +22,14 @@ export async function getStaticProps(context) {
   const flatSections = sections.reduce((acc, section) => {
     return [...acc, ...section];
   }, []);
-  // find the section
-  const section = flatSections.find((s) => s.link === slug);
-  const title = section.title;
-  const filename = section.link;
+  const idx = flatSections.findIndex((s) => s.link === slug);
+  const section = flatSections[idx];
+  const nextSection =
+    idx >= flatSections.length - 2 ? null : flatSections[idx + 1];
+
   // read the MDX file
   const mdxSource = await fs.promises.readFile(
-    `./contents/${filename}.mdx`,
+    `./contents/${section.link}.mdx`,
     "utf8"
   );
 
@@ -47,27 +48,33 @@ export async function getStaticProps(context) {
   return {
     props: {
       previewSource: previewSource.code,
-      title: title || null,
+      title: section.title || null,
+      nextSection,
     },
   };
 }
 
-export default function Page({ previewSource, title }) {
+export default function Page({ previewSource, title, nextSection }) {
   return (
-    <div>
+    <div className="mt-10 max-w-screen-lg">
       <Head>
         <title>{title} - Web3 by Example</title>
       </Head>
-      <article className="min-w-0 flex-1">
-        <main
-          className="mx-auto px-8 pt-4 prose-xl pb-24"
-          style={{ width: "80ch", maxWidth: "80ch" }}
-        >
-          <h1 className="text-2xl mt-0 mb-9 text-gray-800">
-            Web3 by Example: {title}
-          </h1>
+      <article className="min-w-0 flex-1 text-left divide-y-4 divide-black">
+        <a className="text-3xl uppercase font-bold" href="/">
+          Web3 by Example: {title}
+        </a>
+        <main className="mx-auto pt-10">
           <MDXComponent code={previewSource} />
         </main>
+        {nextSection && (
+          <a
+            className="text-md text-gray-700 hover:text-gray-900 pt-3"
+            href={nextSection.link}
+          >
+            Next example: {nextSection.title}
+          </a>
+        )}
       </article>
     </div>
   );

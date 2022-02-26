@@ -1,1 +1,157 @@
-# Account Balances
+An Ethereum account is an entity with an ether (ETH) balance that can send transactions on Ethereum. Accounts can be user-controlled or deployed as smart contracts.
+
+**Account balance** is the number of wei owned by this address. **Wei** is a denomination of ETH and there are 1e+18 wei per ETH.
+
+<CH.Spotlight>
+
+<CH.Code>
+
+```js balance.js
+const { ethers } = require("ethers");
+
+(async () => {
+  const provider = new ethers.providers.AlchemyProvider(
+    "goerli",
+    process.env.API_KEY
+  );
+  const balance = await provider.getBalance(
+    "0x67CF3bF40b2b3b3D68F6c361AEf81F8AEb2dB637"
+  );
+
+  console.log(ethers.utils.formatEther(balance));
+})();
+```
+
+---
+
+```zsh output
+❯ node balance.js
+3.523785565427238379
+```
+
+</CH.Code>
+
+---
+
+Import the `ethers` package that can interact with the Ethereum Blockchain and its ecosystem.
+
+```js balance.js focus=1
+const { ethers } = require("ethers");
+
+(async () => {
+  const provider = ethers.getDefaultProvider("goerli");
+  const balance = await provider.getBalance(
+    "0x67CF3bF40b2b3b3D68F6c361AEf81F8AEb2dB637"
+  );
+
+  console.log(balance.toString());
+})();
+```
+
+---
+
+Setup the provider. A **Provider** in ethers is a read-only abstraction to access the blockchain data.
+
+```js balance.js focus=4
+const { ethers } = require("ethers");
+
+(async () => {
+  const provider = ethers.getDefaultProvider("goerli");
+  const balance = await provider.getBalance(
+    "0x67CF3bF40b2b3b3D68F6c361AEf81F8AEb2dB637"
+  );
+
+  console.log(balance.toString());
+})();
+```
+
+---
+
+Also, you can change the default provider. For example, using the alchemy provider.
+
+```js balance.js focus=4:7
+const { ethers } = require("ethers");
+
+(async () => {
+  const provider = new ethers.providers.AlchemyProvider(
+    "goerli",
+    process.env.API_KEY
+  );
+  const balance = await provider.getBalance(
+    "0x67CF3bF40b2b3b3D68F6c361AEf81F8AEb2dB637"
+  );
+
+  console.log(balance.toString());
+})();
+```
+
+---
+
+The **getBalance** method returns the balance of the given address.
+
+```js balance.js focus=8:10
+const { ethers } = require("ethers");
+
+(async () => {
+  const provider = new ethers.providers.AlchemyProvider(
+    "goerli",
+    process.env.API_KEY
+  );
+  const balance = await provider.getBalance(
+    "0x67CF3bF40b2b3b3D68F6c361AEf81F8AEb2dB637"
+  );
+
+  console.log(balance.toString());
+})();
+```
+
+---
+
+If ens is supported by network, you can use it to replace the address.
+
+```js balance.js focus=8
+const { ethers } = require("ethers");
+
+(async () => {
+  const provider = new ethers.providers.AlchemyProvider(
+    "goerli",
+    process.env.API_KEY
+  );
+  const balance = await provider.getBalance("ethers.eth");
+
+  console.log(balance.toString());
+})();
+```
+
+---
+
+Finally, let's use the **formatEther** utils to format the balance.
+
+<CH.Code>
+
+```js balance.js focus=12
+const { ethers } = require("ethers");
+
+(async () => {
+  const provider = new ethers.providers.AlchemyProvider(
+    "goerli",
+    process.env.API_KEY
+  );
+  const balance = await provider.getBalance(
+    "0x67CF3bF40b2b3b3D68F6c361AEf81F8AEb2dB637"
+  );
+
+  console.log(ethers.utils.formatEther(balance));
+})();
+```
+
+---
+
+```zsh output
+❯ node balance.js
+3.523785565427238379
+```
+
+</CH.Code>
+
+</CH.Spotlight>

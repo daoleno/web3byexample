@@ -1,3 +1,18 @@
-/* .ch-scrollycoding-step-content {
+.ch-spotlight-tab {
   border: none !important;
-} */
+  color: rgb(156 163 175);
+}
+
+.ch-spotlight-tab:hover {
+  color: rgb(17 24 39);
+  cursor: pointer;
+}
+
+.ch-spotlight-tab[data-selected] {
+  color: rgb(17 24 39);
+  cursor: pointer;
+}
+
+.ch-spotlight-sticker {
+  width: 512px !important;
+}

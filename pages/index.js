@@ -9,7 +9,7 @@ export const sections = [
     },
     {
       title: "Account Token Balances",
-      link: "#foo",
+      link: "foo",
       category: "Accounts",
     },
     {
@@ -152,7 +152,7 @@ export const sections = [
 
 export default function Page() {
   return (
-    <div className="flex flex-col font-mono justify-center items-center divide-y-4 divide-black">
+    <div className="max-w-screen-md flex flex-col font-mono justify-center items-center divide-y-4 divide-black">
       <p className="text-3xl uppercase font-bold mb-1">Web3 by Example</p>
       <div>
         <div className="my-6 mx-auto text-lg">
@@ -181,7 +181,7 @@ export default function Page() {
               <div className="text-xl font-semibold mt-3">{s[0].category}</div>
               <div className="indent-4">
                 {s.map((item, j) => (
-                  <div className="mt-2">
+                  <div className="mt-2 hover:font-semibold">
                     <Link key={j} href={item.link}>
                       {item.title}
                     </Link>
