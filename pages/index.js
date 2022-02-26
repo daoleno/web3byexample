@@ -9,66 +9,66 @@ export const sections = [
     },
     {
       title: "Account Token Balances",
-      link: "foo",
+      link: "account-token-balances",
       category: "Accounts",
     },
     {
       title: "Generating New Wallets",
-      link: "#foo",
+      link: "generating-new-wallets",
       category: "Accounts",
     },
     {
       title: "Keystores",
-      link: "#foo",
+      link: "keystores",
       category: "Accounts",
     },
     {
       title: "HD Wallet",
-      link: "#foo",
+      link: "hd-wallet",
       category: "Accounts",
     },
     {
       title: "Address Check",
-      link: "#foo",
+      link: "address-check",
       category: "Accounts",
     },
   ],
   [
     {
       title: "Querying Blocks",
-      link: "#foo",
+      link: "querying-blocks",
       category: "Transactions",
     },
     {
       title: "Querying Transactions",
-      link: "#foo",
+      link: "querying-transactions",
       category: "Transactions",
     },
     {
       title: "Transferring ETH",
-      link: "#foo",
+      link: "transferring-eth",
       category: "Transactions",
     },
     {
       title: "Transferring Tokens (ERC-20)",
-      link: "#foo",
+      link: "transferring-erc20",
       category: "Transactions",
     },
     {
       title: "Subscribing to New Blocks",
-      link: "#foo",
+      link: "subscribing-to-new-blocks",
       category: "Transactions",
     },
     {
       title: "Send Raw Transaction",
-      link: "#foo",
+      link: "send-raw-transaction",
       category: "Transactions",
     },
   ],
   [
     {
       title: "Smart Contract Compilation & ABI",
-      link: "#foo",
+      link: "smart-contract-compilation-abi",
       category: "Smart Contracts",
     },
     {
@@ -181,10 +181,8 @@ export default function Page() {
               <div className="text-xl font-semibold mt-3">{s[0].category}</div>
               <div className="indent-4">
                 {s.map((item, j) => (
-                  <div className="mt-2 hover:font-semibold">
-                    <Link key={j} href={item.link}>
-                      {item.title}
-                    </Link>
+                  <div className="mt-2 hover:font-semibold" key={j}>
+                    <Link href={item.link}>{item.title}</Link>
                   </div>
                 ))}
               </div>

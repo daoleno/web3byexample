@@ -1,0 +1,258 @@
+**Token(ERC-20) balance** is stored in an ERC-20 standard smart contract. Learn more about <ins>[smart contracts](/smart-contract-compilation-abi)</ins>.
+
+<CH.Spotlight>
+
+<CH.Code>
+
+```js token-balance.js
+const { ethers } = require("ethers");
+
+(async () => {
+  const daiAddress = "0xdc31Ee1784292379Fbb2964b3B9C4124D8F89C60";
+
+  const daiAbi = [
+    // Some details about the token
+    "function name() view returns (string)",
+    "function symbol() view returns (string)",
+
+    // Get the account balance
+    "function balanceOf(address) view returns (uint)",
+
+    // Send some of your tokens to someone else
+    "function transfer(address to, uint amount)",
+
+    // An event triggered whenever anyone transfers to someone else
+    "event Transfer(address indexed from, address indexed to, uint amount)",
+  ];
+
+  const provider = new ethers.providers.AlchemyProvider(
+    "goerli",
+    process.env.API_KEY
+  );
+
+  const daiContract = new ethers.Contract(daiAddress, daiAbi, provider);
+  const balance = await daiContract.balanceOf(
+    "0x67CF3bF40b2b3b3D68F6c361AEf81F8AEb2dB637"
+  );
+
+  console.log(ethers.utils.formatUnits(balance, 18));
+})();
+```
+
+---
+
+```sh output
+❯ node token token-balance.js
+113.908217455399736361
+```
+
+</CH.Code>
+
+---
+
+We use DAI token in goerli testnet as an example.
+
+```js token-balance.js focus=4
+const { ethers } = require("ethers");
+
+(async () => {
+  const daiAddress = "0xdc31Ee1784292379Fbb2964b3B9C4124D8F89C60";
+
+  const daiAbi = [
+    // Some details about the token
+    "function name() view returns (string)",
+    "function symbol() view returns (string)",
+
+    // Get the account balance
+    "function balanceOf(address) view returns (uint)",
+
+    // Send some of your tokens to someone else
+    "function transfer(address to, uint amount)",
+
+    // An event triggered whenever anyone transfers to someone else
+    "event Transfer(address indexed from, address indexed to, uint amount)",
+  ];
+
+  const provider = new ethers.providers.AlchemyProvider(
+    "goerli",
+    process.env.API_KEY
+  );
+
+  const daiContract = new ethers.Contract(daiAddress, daiAbi, provider);
+  const balance = await daiContract.balanceOf(
+    "0x67CF3bF40b2b3b3D68F6c361AEf81F8AEb2dB637"
+  );
+
+  console.log(ethers.utils.formatUnits(balance, 18));
+})();
+```
+
+---
+
+The **ERC-20 Contract ABI**, which is a common contract interface
+for tokens (this is the Human-Readable ABI format).
+
+```js token-balance.js focus=6:19
+const { ethers } = require("ethers");
+
+(async () => {
+  const daiAddress = "0xdc31Ee1784292379Fbb2964b3B9C4124D8F89C60";
+
+  const daiAbi = [
+    // Some details about the token
+    "function name() view returns (string)",
+    "function symbol() view returns (string)",
+
+    // Get the account balance
+    "function balanceOf(address) view returns (uint)",
+
+    // Send some of your tokens to someone else
+    "function transfer(address to, uint amount)",
+
+    // An event triggered whenever anyone transfers to someone else
+    "event Transfer(address indexed from, address indexed to, uint amount)",
+  ];
+
+  const provider = new ethers.providers.AlchemyProvider(
+    "goerli",
+    process.env.API_KEY
+  );
+
+  const daiContract = new ethers.Contract(daiAddress, daiAbi, provider);
+  const balance = await daiContract.balanceOf(
+    "0x67CF3bF40b2b3b3D68F6c361AEf81F8AEb2dB637"
+  );
+
+  console.log(ethers.utils.formatUnits(balance, 18));
+})();
+```
+
+---
+
+Set the provider that can be used to query the chain data.
+
+```js token-balance.js focus=21:23
+const { ethers } = require("ethers");
+
+(async () => {
+  const daiAddress = "0xdc31Ee1784292379Fbb2964b3B9C4124D8F89C60";
+
+  const daiAbi = [
+    // Some details about the token
+    "function name() view returns (string)",
+    "function symbol() view returns (string)",
+
+    // Get the account balance
+    "function balanceOf(address) view returns (uint)",
+
+    // Send some of your tokens to someone else
+    "function transfer(address to, uint amount)",
+
+    // An event triggered whenever anyone transfers to someone else
+    "event Transfer(address indexed from, address indexed to, uint amount)",
+  ];
+
+  const provider = new ethers.providers.AlchemyProvider(
+    "goerli",
+    process.env.API_KEY
+  );
+
+  const daiContract = new ethers.Contract(daiAddress, daiAbi, provider);
+  const balance = await daiContract.balanceOf(
+    "0x67CF3bF40b2b3b3D68F6c361AEf81F8AEb2dB637"
+  );
+
+  console.log(ethers.utils.formatUnits(balance, 18));
+})();
+```
+
+---
+
+Create the contract object. A **contract object** is an abstraction of a smart contract on the Ethereum Network. It allows for easy interaction with the smart contract.
+
+```js token-balance.js focus=26
+const { ethers } = require("ethers");
+
+(async () => {
+  const daiAddress = "0xdc31Ee1784292379Fbb2964b3B9C4124D8F89C60";
+
+  const daiAbi = [
+    // Some details about the token
+    "function name() view returns (string)",
+    "function symbol() view returns (string)",
+
+    // Get the account balance
+    "function balanceOf(address) view returns (uint)",
+
+    // Send some of your tokens to someone else
+    "function transfer(address to, uint amount)",
+
+    // An event triggered whenever anyone transfers to someone else
+    "event Transfer(address indexed from, address indexed to, uint amount)",
+  ];
+
+  const provider = new ethers.providers.AlchemyProvider(
+    "goerli",
+    process.env.API_KEY
+  );
+
+  const daiContract = new ethers.Contract(daiAddress, daiAbi, provider);
+  const balance = await daiContract.balanceOf(
+    "0x67CF3bF40b2b3b3D68F6c361AEf81F8AEb2dB637"
+  );
+
+  console.log(ethers.utils.formatUnits(balance, 18));
+})();
+```
+
+---
+
+Get the balance of an address. Format the DAI for displaying to the user
+
+<CH.Code>
+
+```js token-balance.js focus=27:31
+const { ethers } = require("ethers");
+
+(async () => {
+  const daiAddress = "0xdc31Ee1784292379Fbb2964b3B9C4124D8F89C60";
+
+  const daiAbi = [
+    // Some details about the token
+    "function name() view returns (string)",
+    "function symbol() view returns (string)",
+
+    // Get the account balance
+    "function balanceOf(address) view returns (uint)",
+
+    // Send some of your tokens to someone else
+    "function transfer(address to, uint amount)",
+
+    // An event triggered whenever anyone transfers to someone else
+    "event Transfer(address indexed from, address indexed to, uint amount)",
+  ];
+
+  const provider = new ethers.providers.AlchemyProvider(
+    "goerli",
+    process.env.API_KEY
+  );
+
+  const daiContract = new ethers.Contract(daiAddress, daiAbi, provider);
+  const balance = await daiContract.balanceOf(
+    "0x67CF3bF40b2b3b3D68F6c361AEf81F8AEb2dB637"
+  );
+
+  console.log(ethers.utils.formatUnits(balance, 18));
+})();
+```
+
+---
+
+```sh output
+❯ node token token-balance.js
+113.908217455399736361
+```
+
+</CH.Code>
+
+</CH.Spotlight>
