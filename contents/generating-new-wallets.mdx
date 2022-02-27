@@ -1,0 +1,132 @@
+The Wallet can sign transactions and messages using a private key as a standard Externally Owned Account <ins>[(EOA)](https://ethereum.org/en/glossary/#eoa)</ins>.
+
+<CH.Spotlight>
+
+<CH.Code>
+
+```js wallet.js
+const { ethers } = require("ethers");
+
+(async () => {
+  const wallet = ethers.Wallet.createRandom();
+
+  console.log("address", wallet.address);
+  console.log("mnemonic", wallet.mnemonic);
+  console.log("privateKey", wallet.privateKey);
+})();
+```
+
+---
+
+```sh output
+➜ node wallet.js
+address 0x40A11AFfdC868324E1d6420C08C238165532f0a5
+mnemonic {
+  phrase: 'cousin apart apple final first present ozone process boost sugar they drop',
+  path: "m/44'/60'/0'/0/0",
+  locale: 'en'
+}
+privateKey 0x002084b07c85a69f7eb7cb1d63d59cd03e8c9e4678cf37e15a9fc3ec9bf88df3
+```
+
+</CH.Code>
+
+---
+
+Generate a new Wallet with a random private key, generated from cryptographically secure entropy sources.
+If the current environment does not have a secure entropy source, an error is thrown.
+
+```js wallet.js focus=4
+const { ethers } = require("ethers");
+
+(async () => {
+  const wallet = ethers.Wallet.createRandom();
+
+  console.log("address", wallet.address);
+  console.log("mnemonic", wallet.mnemonic);
+  console.log("privateKey", wallet.privateKey);
+})();
+```
+
+---
+
+An Ethereum account has an Ethereum address, like an inbox has an email address. You can use this to send funds to an account.
+
+```js wallet.js focus=6
+const { ethers } = require("ethers");
+
+(async () => {
+  const wallet = ethers.Wallet.createRandom();
+
+  console.log("address", wallet.address);
+  console.log("mnemonic", wallet.mnemonic);
+  console.log("privateKey", wallet.privateKey);
+})();
+```
+
+---
+
+The mnemonic phrases are used to generate a private key.
+Most modern cryptocurrency wallets implement <ins>[Bitcoin Improvement Proposal (BIP) 39](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki)</ins>.
+
+```js wallet.js focus=7
+const { ethers } = require("ethers");
+
+(async () => {
+  const wallet = ethers.Wallet.createRandom();
+
+  console.log("address", wallet.address);
+  console.log("mnemonic", wallet.mnemonic);
+  console.log("privateKey", wallet.privateKey);
+})();
+```
+
+---
+
+The private key is a secret number that allows Ethereum users to prove ownership of an account or contracts, by producing a digital signature.
+
+```js wallet.js focus=8
+const { ethers } = require("ethers");
+
+(async () => {
+  const wallet = ethers.Wallet.createRandom();
+
+  console.log("address", wallet.address);
+  console.log("mnemonic", wallet.mnemonic);
+  console.log("privateKey", wallet.privateKey);
+})();
+```
+
+---
+
+**Don't share your mnemonic or private key!**
+
+<CH.Code>
+
+```js wallet.js focus=7,8
+const { ethers } = require("ethers");
+
+(async () => {
+  const wallet = ethers.Wallet.createRandom();
+
+  console.log("address", wallet.address);
+  console.log("mnemonic", wallet.mnemonic);
+  console.log("privateKey", wallet.privateKey);
+})();
+```
+
+---
+
+```sh output focus=4,8
+➜ node wallet.js
+address 0x40A11AFfdC868324E1d6420C08C238165532f0a5
+mnemonic {
+  phrase: 'cousin apart apple final first present ozone process boost sugar they drop',
+  path: "m/44'/60'/0'/0/0",
+  locale: 'en'
+}
+privateKey 0x002084b07c85a69f7eb7cb1d63d59cd03e8c9e4678cf37e15a9fc3ec9bf88df3
+```
+
+</CH.Code>
+</CH.Spotlight>
