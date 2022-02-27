@@ -1,0 +1,60 @@
+HD wallet is a wallet using the hierarchical deterministic (HD) key creation and transfer
+protocol. <ins>[Learn more](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki)</ins>.
+
+<CH.Spotlight>
+
+<CH.Code>
+
+```js hd-wallet.js
+const { ethers } = require("ethers");
+
+(async () => {
+  const mnemonic =
+    "candy maple cake sugar pudding cream honey rich smooth crumble sweet treat";
+  const wallet = ethers.utils.HDNode.fromMnemonic(mnemonic);
+
+  for (let i = 0; i < 3; i++) {
+    const account = wallet.derivePath(`m/44'/60'/0'/0/${i}`);
+    console.log(i, account.address);
+  }
+})();
+```
+
+---
+
+```sh output
+➜ node hd-wallet.js
+0 0x627306090abaB3A6e1400e9345bC60c78a8BEf57
+1 0xf17f52151EbEF6C7334FAD080c5704D77216b732
+2 0xC5fdf4076b8F3A5357c5E395ab970B5B54098Fef
+```
+
+</CH.Code>
+
+---
+
+Create HD wallet from a mnemonic phrase.
+
+```js hd-wallet.js focus=4:6
+
+```
+
+---
+
+Generate three accounts by deriving the path. The default ethereum path is **m/44'/60'/0'/0/0**.
+
+<CH.Code>
+
+```js hd-wallet.js focus=8:11
+
+```
+
+---
+
+```sh output
+
+```
+
+</CH.Code>
+
+</CH.Spotlight>
