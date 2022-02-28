@@ -1,0 +1,120 @@
+Block is a collection of required information (a block header) about the comprised transactions, and a set of other block headers known as ommers. Blocks are added to the Ethereum network by miners.
+
+<CH.Spotlight>
+
+<CH.Code>
+
+```js block.js
+const { ethers } = require("ethers");
+
+(async () => {
+  const provider = ethers.getDefaultProvider();
+  const block = await provider.getBlock(14292113);
+  console.log(block);
+})();
+```
+
+---
+
+```sh output
+➜ node block.js
+{
+  hash: '0xd0735d21ebe47e306bb7a00df4a877509aa6f8ffa5c65f8de2885faf13b9f95e',
+  parentHash: '0x2553435a83165b2cf4ed84482f6a4e829155b4a9115e699ed16789dd28d503b7',
+  number: 14292113,
+  timestamp: 1646017635,
+  nonce: '0xf66f9be27a2db4e1',
+  difficulty: null,
+  gasLimit: BigNumber { _hex: '0x01c9c380', _isBigNumber: true },
+  gasUsed: BigNumber { _hex: '0x01c99d16', _isBigNumber: true },
+  miner: '0xEA674fdDe714fd979de3EdF0F56AA9716B898ec8',
+  extraData: '0x6575726f70652d77657374332d34',
+  transactions: [
+    '0x86025d602b75fadab1e2ec4f8c3d69867bb85abd665c14b739367f489799c18f',
+    '0x3eae0a476bcd9bd718e5e8dfe6f64261990e19dc5ebe3296d7354296c8dc4bf3',
+    '0x79ea4c1501328bb5c02a4d6d7841478b652e9d4aaefe71796f6959e26417618c',
+    ...
+  ],
+  baseFeePerGas: BigNumber { _hex: '0x099d452c96', _isBigNumber: true },
+  _difficulty: BigNumber { _hex: '0x2c97ff39a3b876', _isBigNumber: true }
+}
+```
+
+</CH.Code>
+
+---
+
+We use a default provider to query block information on the ethereum mainnet.
+
+```js block.js focus=4
+
+```
+
+---
+
+Get the block from the network at the latest height.
+
+```js block.js focus=5
+const { ethers } = require("ethers");
+
+(async () => {
+  const provider = ethers.getDefaultProvider();
+  const block = await provider.getBlock();
+  console.log(block);
+})();
+```
+
+---
+
+Or specify a block number.
+
+```js block.js focus=5
+const { ethers } = require("ethers");
+
+(async () => {
+  const provider = ethers.getDefaultProvider();
+  const block = await provider.getBlock(14292113);
+  console.log(block);
+})();
+```
+
+---
+
+Let's see what the block contains.
+
+<CH.Code>
+
+```sh block
+* hash(mixHash) – a unique identifier for that block.
+* parentHash – the unique identifier for the block that came before (this is how blocks are linked in a chain).
+* number – the length of the blockchain in blocks.
+* timestamp – the time when the block was mined.
+* nonce – a hash that, when combined with the mixHash, proves that the block has gone through proof-of-work.
+* difficulty – the effort required to mine the block.
+* gasLimit - the maximum amount of gas that can be used in this block.
+* gasUsed – the amount of gas used in this block.
+* miner – the address of the miner who mined the block.
+* extraData – the extra data that was included in the block.
+* transactions – the transactions included in the block.
+* baseFeePerGas - the minimum fee per gas required for a transaction to be included in the block.
+```
+
+```js block.js focus=6
+const { ethers } = require("ethers");
+
+(async () => {
+  const provider = ethers.getDefaultProvider();
+  const block = await provider.getBlock(14292113);
+  console.log(block);
+})();
+```
+
+---
+
+```sh output
+
+```
+
+</CH.Code>
+
+</CH.Spotlight>
