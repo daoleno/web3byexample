@@ -152,7 +152,7 @@ export const sections = [
 
 export default function Page() {
   return (
-    <div className="max-w-screen-md flex flex-col font-mono justify-center items-center divide-y-4 divide-black">
+    <div className="max-w-screen-md flex flex-col justify-center items-center divide-y-4 divide-black">
       <p className="text-3xl uppercase font-bold mb-1">Web3 by Example</p>
       <div>
         <div className="my-6 mx-auto text-lg">

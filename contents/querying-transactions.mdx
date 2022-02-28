@@ -1,0 +1,144 @@
+Transactions are cryptographically signed instructions from accounts. An account will initiate a transaction to update the state of the Ethereum network. The simplest transaction is transferring ETH from one account to another.
+
+<CH.Spotlight>
+
+<CH.Code>
+
+```js transaction.js
+const { ethers } = require("ethers");
+
+(async () => {
+  const txHash =
+    "0x86025d602b75fadab1e2ec4f8c3d69867bb85abd665c14b739367f489799c18f";
+
+  const provider = ethers.getDefaultProvider();
+
+  const tx = await provider.getTransaction(txHash);
+  console.log("tx", tx);
+
+  const receipt = await provider.getTransactionReceipt(txHash);
+  console.log("receipt", receipt);
+})();
+```
+
+---
+
+```sh output
+➜ node transaction.js
+tx {
+  hash: '0x86025d602b75fadab1e2ec4f8c3d69867bb85abd665c14b739367f489799c18f',
+  type: 2,
+  accessList: [],
+  blockHash: '0xd0735d21ebe47e306bb7a00df4a877509aa6f8ffa5c65f8de2885faf13b9f95e',
+  blockNumber: 14292113,
+  transactionIndex: 0,
+  confirmations: 621,
+  from: '0xEA674fdDe714fd979de3EdF0F56AA9716B898ec8',
+  gasPrice: BigNumber { _hex: '0x09d8dff696', _isBigNumber: true },
+  maxPriorityFeePerGas: BigNumber { _hex: '0x3b9aca00', _isBigNumber: true },
+  maxFeePerGas: BigNumber { _hex: '0x138460e74f', _isBigNumber: true },
+  gasLimit: BigNumber { _hex: '0x03d090', _isBigNumber: true },
+  to: '0x457db16E5851a4C592D8b96E45f527445f3adeBB',
+  value: BigNumber { _hex: '0x7c1fe36fa714d0', _isBigNumber: true },
+  nonce: 40943985,
+  data: '0x',
+  r: '0x343bc2514bd9596807deb5131355dc2b165a5fe3c01d453b0b4102da69bc26f1',
+  s: '0x1c099ea11a8b44131bcaf7f6f5df154a9ccecbeb94b4a3c499f7ca4b254d4c75',
+  v: 1,
+  creates: null,
+  chainId: 1,
+  wait: [Function (anonymous)]
+}
+receipt {
+  to: '0x457db16E5851a4C592D8b96E45f527445f3adeBB',
+  from: '0xEA674fdDe714fd979de3EdF0F56AA9716B898ec8',
+  contractAddress: null,
+  transactionIndex: 0,
+  gasUsed: BigNumber { _hex: '0x5208', _isBigNumber: true },
+  logsBloom: '0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000',
+  blockHash: '0xd0735d21ebe47e306bb7a00df4a877509aa6f8ffa5c65f8de2885faf13b9f95e',
+  transactionHash: '0x86025d602b75fadab1e2ec4f8c3d69867bb85abd665c14b739367f489799c18f',
+  logs: [],
+  blockNumber: 14292113,
+  confirmations: 621,
+  cumulativeGasUsed: BigNumber { _hex: '0x5208', _isBigNumber: true },
+  effectiveGasPrice: BigNumber { _hex: '0x09d8dff696', _isBigNumber: true },
+  status: 1,
+  type: 2,
+  byzantium: true
+}
+```
+
+</CH.Code>
+
+---
+
+In the <ins>[previous example](/querying-blocks)</ins>, we queried the block that contains the transaction.
+We can iterate over all transactions in a block, and query a specific transaction by its hash.
+
+```js transaction.js focus=6:9
+const { ethers } = require("ethers");
+
+(async () => {
+  const provider = ethers.getDefaultProvider();
+  const block = await provider.getBlock(14292113);
+  for (const txHash of block.transactions) {
+    const tx = await provider.getTransaction(txHash);
+    console.log(tx);
+  }
+})();
+```
+
+---
+
+Get the transaction with hash or return null if the transaction is unknown.
+If a transaction has not been mined, this method will search the transaction pool. Various backends may have more restrictive transaction pool access (e.g. if the gas price is too low or the transaction was only recently sent and not yet indexed) in which case this method may also return null.
+
+```js transaction.js focus=9:10
+
+```
+
+---
+
+Ge the transaction receipt for hash or return null if the transaction has not been mined.
+
+```js transaction.js focus=12:13
+
+```
+
+---
+
+Let's see what the transaction contains.
+
+<CH.Code>
+
+```sh transaction
+* hash - The transaction hash, which can be used as an identifier for transaction. This is the keccak256 of the serialized RLP encoded representation of transaction.
+* to - The address transaction is to.
+* from - The address transaction is from.
+* nonce - The nonce for transaction. Each transaction sent to the network from an account includes this, which ensures the order and non-replayability of a transaction. This must be equal to the current number of transactions ever sent to the network by the from address.
+* gasLimit - The gas limit for transaction. An account must have enough ether to cover the gas (at the specified gasPrice). Any unused gas is refunded at the end of the transaction, and if there is insufficient gas to complete execution, the effects of the transaction are reverted, but the gas is fully consumed and an out-of-gas error occurs.
+* gasPrice - The price (in wei) per unit of gas for transaction.(For EIP-1559 transactions, this will be null.)
+* maxFeePerGas - The maximum price (in wei) per unit of gas for transaction.(For transactions that are not EIP-1559 transactions, this will be null.)
+* maxPriorityFeePerGas - The priority fee price (in wei) per unit of gas for transaction.(For transactions that are not EIP-1559 transactions, this will be null.)
+* data - The data for transaction. In a contract this is the call data.
+* value - The value (in wei) for transaction.
+* chainId - The chain ID for transaction. This is used as part of EIP-155 to prevent replay attacks on different networks.
+* r - The r portion of the elliptic curve signatures for transaction. This is more accurately, the x coordinate of the point r (from which the y can be computed, along with v).
+* s - The s portion of the elliptic curve signatures for transaction.
+* v - The v portion of the elliptic curve signatures for transaction. This is used to refine which of the two possible points a given x-coordinate can have, and in EIP-155 is additionally used to encode the chain ID into the serialized transaction.
+```
+
+```js transaction.js focus=10,13
+
+```
+
+---
+
+```sh output
+
+```
+
+</CH.Code>
+
+</CH.Spotlight>

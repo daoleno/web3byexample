@@ -56,7 +56,7 @@ export async function getStaticProps(context) {
 
 export default function Page({ previewSource, title, nextSection }) {
   return (
-    <div className="mt-10 max-w-screen-lg">
+    <div className="mt-10 max-w-screen-lg mb-3">
       <Head>
         <title>{title} - Web3 by Example</title>
       </Head>
