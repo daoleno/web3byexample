@@ -1,0 +1,151 @@
+The simplest transaction is transferring ETH from one account to another. We can use wallet to send transactions.
+
+<CH.Spotlight>
+
+<CH.Code>
+
+```js transfer-eth.js
+const ethers = require("ethers");
+
+(async () => {
+  const provider = ethers.getDefaultProvider("goerli");
+  const privateKey = "your-private-key";
+  const wallet = new ethers.Wallet(privateKey, provider);
+
+  const tx = {
+    to: "0x294B0bBc1721402Bf6d77D46aAB72C1C2C3560BD",
+    value: ethers.utils.parseEther("0.1"),
+  };
+
+  const res = await wallet.sendTransaction(tx);
+
+  console.log(res);
+})();
+```
+
+---
+
+```sh output
+➜ node transfer-eth.js
+{
+  type: 2,
+  chainId: 5,
+  nonce: 127,
+  maxPriorityFeePerGas: BigNumber { _hex: '0x9502f900', _isBigNumber: true },
+  maxFeePerGas: BigNumber { _hex: '0x9502f912', _isBigNumber: true },
+  gasPrice: null,
+  gasLimit: BigNumber { _hex: '0x5208', _isBigNumber: true },
+  to: '0x294B0bBc1721402Bf6d77D46aAB72C1C2C3560BD',
+  value: BigNumber { _hex: '0x016345785d8a0000', _isBigNumber: true },
+  data: '0x',
+  accessList: [],
+  hash: '0x11a4f81841dae0e5bb1b948d3ea8ca1e81d9481a56d5053f47c415f9c4a1d356',
+  v: 0,
+  r: '0x11034c123f6a9634a59d86c9c2167361d243a98d7f9c587ce916961bade99878',
+  s: '0x4cb00d84b992a1f0644571fe521c82969900a970860900da4ce3122e4d714254',
+  from: '0x67CF3bF40b2b3b3D68F6c361AEf81F8AEb2dB637',
+  confirmations: 0,
+  wait: [Function (anonymous)]
+}
+```
+
+</CH.Code>
+
+---
+
+Set your private key, see <ins>[generating new wallets](/generating-new-wallets)</ins> section to learn how to generate one.
+
+```js transfer-eth.js focus=5
+
+```
+
+---
+
+Create a wallet from the **privateKey**, and pass the **provider**. So we can send transactions using this wallet later.
+
+```js transfer-eth.js focus=6
+
+```
+
+---
+
+Construct a transaction object.
+**to** is the address of the recipient.
+**value** is the amount of ETH to send. The unit is **wei**(1 ETH = 10^18 wei).
+We use `ethers.utils.parseEther` to convert to wei.
+
+```js transfer-eth.js focus=8:11
+
+```
+
+---
+
+**sendTransaction** will populate all fields in a transaction, signs it and sends it to the network.
+
+<CH.Code>
+
+```js transfer-eth.js focus=13
+
+```
+
+---
+
+```js output focus=14
+
+```
+
+</CH.Code>
+
+---
+
+We can use **.wait** to wait for the transaction to be mined. This will return transaction recipient.
+If **status** is `1`, it means the transaction was successfully mined.
+
+<CH.Code>
+
+```js transfer-eth.js focus=13
+const ethers = require("ethers");
+
+(async () => {
+  const provider = ethers.getDefaultProvider("goerli");
+  const privateKey = "your-private-key";
+  const wallet = new ethers.Wallet(privateKey, provider);
+
+  const tx = {
+    to: "0x294B0bBc1721402Bf6d77D46aAB72C1C2C3560BD",
+    value: ethers.utils.parseEther("0.1"),
+  };
+
+  const res = await (await wallet.sendTransaction(tx)).wait();
+
+  console.log(res);
+})();
+```
+
+---
+
+```sh recipient focus=10,12,16
+➜ node transfer-eth.js
+{
+  to: '0x294B0bBc1721402Bf6d77D46aAB72C1C2C3560BD',
+  from: '0x67CF3bF40b2b3b3D68F6c361AEf81F8AEb2dB637',
+  contractAddress: null,
+  transactionIndex: 0,
+  gasUsed: BigNumber { _hex: '0x5208', _isBigNumber: true },
+  logsBloom: '0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000',
+  blockHash: '0x66bd1b7cb2bb6fb1bfc60c2b5b903a842cf7dabcf7c4cce9fa4e0f818edf74bf',
+  transactionHash: '0xcfbfca507f08ebc7165d460bfc35f0bacc7d151461e3ab20f8b62cafaa76b151',
+  logs: [],
+  blockNumber: 6456359,
+  confirmations: 5,
+  cumulativeGasUsed: BigNumber { _hex: '0x5208', _isBigNumber: true },
+  effectiveGasPrice: BigNumber { _hex: '0x9502f907', _isBigNumber: true },
+  status: 1,
+  type: 2,
+  byzantium: true
+}
+```
+
+</CH.Code>
+
+</CH.Spotlight>
