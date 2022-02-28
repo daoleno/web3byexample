@@ -25,10 +25,7 @@ const { ethers } = require("ethers");
     "event Transfer(address indexed from, address indexed to, uint amount)",
   ];
 
-  const provider = new ethers.providers.AlchemyProvider(
-    "goerli",
-    process.env.API_KEY
-  );
+  const provider = new ethers.getDefaultProvider("goerli");
 
   const daiContract = new ethers.Contract(daiAddress, daiAbi, provider);
   const balance = await daiContract.balanceOf(
@@ -73,10 +70,7 @@ const { ethers } = require("ethers");
     "event Transfer(address indexed from, address indexed to, uint amount)",
   ];
 
-  const provider = new ethers.providers.AlchemyProvider(
-    "goerli",
-    process.env.API_KEY
-  );
+  const provider = new ethers.getDefaultProvider("goerli");
 
   const daiContract = new ethers.Contract(daiAddress, daiAbi, provider);
   const balance = await daiContract.balanceOf(
@@ -113,10 +107,7 @@ const { ethers } = require("ethers");
     "event Transfer(address indexed from, address indexed to, uint amount)",
   ];
 
-  const provider = new ethers.providers.AlchemyProvider(
-    "goerli",
-    process.env.API_KEY
-  );
+  const provider = new ethers.getDefaultProvider("goerli");
 
   const daiContract = new ethers.Contract(daiAddress, daiAbi, provider);
   const balance = await daiContract.balanceOf(
@@ -131,7 +122,7 @@ const { ethers } = require("ethers");
 
 Set the provider that can be used to query the chain data.
 
-```js token-balance.js focus=21:23
+```js token-balance.js focus=21
 const { ethers } = require("ethers");
 
 (async () => {
@@ -152,10 +143,7 @@ const { ethers } = require("ethers");
     "event Transfer(address indexed from, address indexed to, uint amount)",
   ];
 
-  const provider = new ethers.providers.AlchemyProvider(
-    "goerli",
-    process.env.API_KEY
-  );
+  const provider = new ethers.getDefaultProvider("goerli");
 
   const daiContract = new ethers.Contract(daiAddress, daiAbi, provider);
   const balance = await daiContract.balanceOf(
@@ -170,7 +158,7 @@ const { ethers } = require("ethers");
 
 Create the contract object. A **contract object** is an abstraction of a smart contract on the Ethereum Network. It allows for easy interaction with the smart contract.
 
-```js token-balance.js focus=26
+```js token-balance.js focus=23
 const { ethers } = require("ethers");
 
 (async () => {
@@ -191,10 +179,7 @@ const { ethers } = require("ethers");
     "event Transfer(address indexed from, address indexed to, uint amount)",
   ];
 
-  const provider = new ethers.providers.AlchemyProvider(
-    "goerli",
-    process.env.API_KEY
-  );
+  const provider = new ethers.getDefaultProvider("goerli");
 
   const daiContract = new ethers.Contract(daiAddress, daiAbi, provider);
   const balance = await daiContract.balanceOf(
@@ -211,7 +196,7 @@ Get the balance of an address. Format the DAI for displaying to the user
 
 <CH.Code>
 
-```js token-balance.js focus=27:31
+```js token-balance.js focus=24:29
 const { ethers } = require("ethers");
 
 (async () => {
@@ -232,10 +217,7 @@ const { ethers } = require("ethers");
     "event Transfer(address indexed from, address indexed to, uint amount)",
   ];
 
-  const provider = new ethers.providers.AlchemyProvider(
-    "goerli",
-    process.env.API_KEY
-  );
+  const provider = new ethers.getDefaultProvider("goerli");
 
   const daiContract = new ethers.Contract(daiAddress, daiAbi, provider);
   const balance = await daiContract.balanceOf(

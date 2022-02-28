@@ -21,10 +21,7 @@ const { ethers } = require("ethers");
     "event Transfer(address indexed from, address indexed to, uint amount)",
   ];
 
-  const provider = new ethers.providers.AlchemyProvider(
-    "goerli",
-    process.env.API_KEY
-  );
+  const provider = new ethers.getDefaultProvider("goerli");
 
   // The Contract object
   const daiContract = new ethers.Contract(daiAddress, daiAbi, provider);
