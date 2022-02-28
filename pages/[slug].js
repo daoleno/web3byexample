@@ -61,15 +61,18 @@ export default function Page({ previewSource, title, nextSection }) {
         <title>{title} - Web3 by Example</title>
       </Head>
       <article className="min-w-0 flex-1 text-left divide-y-4 divide-black">
-        <a className="text-3xl uppercase font-bold" href="/">
+        <a
+          className="text-3xl uppercase font-extrabold text-slate-900 tracking-tight"
+          href="/"
+        >
           Web3 by Example: {title}
         </a>
-        <main className="mx-auto pt-10">
+        <main className="mx-auto pt-10 text-lg text-slate-700">
           <MDXComponent code={previewSource} />
         </main>
         {nextSection && (
           <a
-            className="text-md text-gray-700 hover:text-gray-900 pt-3"
+            className="text-md text-slate-700 hover:text-slate-900 pt-3"
             href={nextSection.link}
           >
             Next example: {nextSection.title}

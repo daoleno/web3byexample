@@ -1,15 +1,15 @@
 .ch-spotlight-tab {
   border: none !important;
-  color: rgb(156 163 175);
+  color: rgb(148 163 184);
 }
 
 .ch-spotlight-tab:hover {
-  color: rgb(17 24 39);
+  color: rgb(15 23 42);
   cursor: pointer;
 }
 
 .ch-spotlight-tab[data-selected] {
-  color: rgb(17 24 39);
+  color: rgb(15 23 42);
   cursor: pointer;
 }
 

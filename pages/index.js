@@ -153,8 +153,10 @@ export const sections = [
 export default function Page() {
   return (
     <div className="max-w-screen-md flex flex-col justify-center items-center divide-y-4 divide-black">
-      <p className="text-3xl uppercase font-bold mb-1">Web3 by Example</p>
-      <div>
+      <p className="text-3xl uppercase font-extrabold text-slate-900 tracking-tight mb-1">
+        Web3 by Example
+      </p>
+      <div className="text-slate-700">
         <div className="my-6 mx-auto text-lg">
           <a
             className="underline"
@@ -190,7 +192,7 @@ export default function Page() {
           ))}
         </div>
       </div>
-      <div className="w-full text-center my-3 pt-1">
+      <div className="w-full text-center text-slate-900 my-3 pt-1">
         by
         <a className="underline mx-2" href="https://twitter.com/dao_leno">
           @daoleno

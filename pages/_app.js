@@ -1,5 +1,6 @@
 import "tailwindcss/tailwind.css";
 import "../global.css";
+import "../fonts.css";
 import "@code-hike/mdx/dist/index.css";
 import Layout from "../components/layout";
 
