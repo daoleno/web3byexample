@@ -1,0 +1,52 @@
+The <ins>[EventEmitter API](https://docs.ethers.io/v5/single-page/#/v5/api/providers/provider/-%23-Provider--event-methods)</ins> allows applications to use an Observer Pattern to register callbacks for when various events occur.
+We can use this to subscribe new blocks.
+
+<CH.Spotlight>
+
+<CH.Code>
+
+```js subscribe.js
+const { ethers } = require("ethers");
+
+(async () => {
+  const provider = ethers.getDefaultProvider();
+
+  provider.on("block", async (blockNumber) => {
+    console.log(blockNumber);
+  });
+})();
+```
+
+---
+
+```sh output
+➜ node subscribe.js
+14302419
+14302420
+14302421
+14302422
+14302423
+```
+
+</CH.Code>
+
+---
+
+**provider.on** add a listener to be triggered for each event.
+We can subscribe "block" event that is emitted when a new block is mined.
+
+<CH.Code>
+
+```js subscribe.js focus=6:8
+
+```
+
+---
+
+```sh output
+
+```
+
+</CH.Code>
+
+</CH.Spotlight>
