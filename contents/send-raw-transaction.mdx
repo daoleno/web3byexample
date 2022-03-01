@@ -1,0 +1,213 @@
+An Ethereum transaction refers to an action initiated by an externally-owned account, in other words an account managed by a human, not a contract. For example, if Bob sends Alice 1 ETH, Bob's account must be debited and Alice's must be credited. This state-changing action takes place within a transaction.
+
+<CH.Spotlight>
+
+<CH.Code>
+
+```js send-transaction.js
+const ethers = require("ethers");
+
+(async () => {
+  const provider = ethers.getDefaultProvider("goerli");
+  const privateKey = "your-private-key";
+  const wallet = new ethers.Wallet(privateKey, provider);
+
+  const rawTx = {
+    to: "0xddB51f100672Cb252C67D516eb79931bf27cE3E6",
+    value: ethers.utils.parseEther("0.1"),
+    data: ethers.utils.toUtf8Bytes("web3byexample"),
+  };
+
+  const tx = await wallet.sendTransaction(rawTx);
+  console.log("txhash", tx.hash);
+})();
+```
+
+---
+
+```sh output
+➜ node send-transaction.js
+txhash 0x5fec073dcffa88a30b4f74c2f61baaf9aae0183e36148fbf2a5b414dbde96870
+
+```
+
+</CH.Code>
+
+---
+
+As usual, we need provider, private key and wallet to send a transaction.
+
+```js send-transaction.js focus=4:7
+const ethers = require("ethers");
+
+(async () => {
+  const provider = ethers.getDefaultProvider("goerli");
+  const privateKey = "your-private-key";
+  const wallet = new ethers.Wallet(privateKey);
+
+  const rawTx = {
+    to: "0xddB51f100672Cb252C67D516eb79931bf27cE3E6",
+    value: ethers.utils.parseEther("0.1"),
+    data: ethers.utils.toUtf8Bytes("web3byexample"),
+    nonce: await provider.getTransactionCount(wallet.address),
+    gasLimit: 25000,
+    gasPrice: await provider.getGasPrice(),
+  };
+
+  const signedTx = await wallet.signTransaction(rawTx);
+  console.log("signedTx", signedTx);
+
+  const tx = await provider.sendTransaction(signedTx);
+  console.log("txhash", tx.hash);
+})();
+```
+
+---
+
+Create a raw transaction object that is ready to be signed and sent.
+
+<CH.Code>
+
+```js send-transaction.js focus=8:15
+const ethers = require("ethers");
+
+(async () => {
+  const provider = ethers.getDefaultProvider("goerli");
+  const privateKey = "your-private-key";
+  const wallet = new ethers.Wallet(privateKey);
+
+  const rawTx = {
+    to: "0xddB51f100672Cb252C67D516eb79931bf27cE3E6",
+    value: ethers.utils.parseEther("0.1"),
+    data: ethers.utils.toUtf8Bytes("web3byexample"),
+    nonce: await provider.getTransactionCount(wallet.address),
+    gasLimit: 25000,
+    gasPrice: await provider.getGasPrice(),
+  };
+
+  const signedTx = await wallet.signTransaction(rawTx);
+  console.log("signedTx", signedTx);
+
+  const tx = await provider.sendTransaction(signedTx);
+  console.log("txhash", tx.hash);
+})();
+```
+
+```txt description
+A submitted transaction includes the following information:
+
+* recipient(to) – the receiving address (if an externally-owned account, the transaction will transfer value. If a contract account, the transaction will execute the contract code)
+* signature – the identifier of the sender. This is generated when the sender's private key signs the transaction and confirms the sender has authorized this transaction
+* value – amount of ETH to transfer from sender to recipient (in WEI, a denomination of ETH)
+* data – optional field to include arbitrary data
+* gasLimit – the maximum amount of gas units that can be consumed by the transaction. Units of gas represent computational steps
+* maxPriorityFeePerGas - the maximum amount of gas to be included as a tip to the miner
+* maxFeePerGas - the maximum amount of gas willing to be paid for the transaction (inclusive of baseFeePerGas and maxPriorityFeePerGas)
+```
+
+</CH.Code>
+
+---
+
+A transaction object needs to be signed using the sender's private key. This proves that the transaction could only have come from the sender and was not sent fraudulently.
+We use **wallet.signTransaction()** to sign the transaction.
+The signedTx is the signed transaction in Recursive Length Prefix (RLP) encoded form.
+
+<CH.Code>
+
+```js send-transaction.js focus=17:18
+const ethers = require("ethers");
+
+(async () => {
+  const provider = ethers.getDefaultProvider("goerli");
+  const privateKey = "your-private-key";
+  const wallet = new ethers.Wallet(privateKey);
+
+  const rawTx = {
+    to: "0xddB51f100672Cb252C67D516eb79931bf27cE3E6",
+    value: ethers.utils.parseEther("0.1"),
+    data: ethers.utils.toUtf8Bytes("web3byexample"),
+    nonce: await provider.getTransactionCount(wallet.address),
+    gasLimit: 25000,
+    gasPrice: await provider.getGasPrice(),
+  };
+
+  const signedTx = await wallet.signTransaction(rawTx);
+  console.log("signedTx", signedTx);
+
+  const tx = await provider.sendTransaction(signedTx);
+  console.log("txhash", tx.hash);
+})();
+```
+
+---
+
+```sh console focus=2
+❯ node send-transaction.js
+signedTx 0xf87981858459682f078261a894ddb51f100672cb252c67d516eb79931bf27ce3e688016345785d8a00008d7765623362796578616d706c651ba060b5fe7d1e2ec8bcaa6348a2b5d27f2d8563d081d1da4851454625e44d855f71a01649f0ec330818858260bd52f879322e6c50aeee4bb69529de45b1b0b0690813
+txhash 0x78f40ef4f512df4e6483cd671b18d1992e8103fd84b6b4e8bb92342e371151b4
+```
+
+</CH.Code>
+
+---
+
+Submit transaction to the network to be mined. The transaction must be signed, and be valid (i.e. the nonce is correct and the account has sufficient balance to pay for the transaction).
+
+<CH.Code>
+
+```js send-transaction.js focus=20:21
+const ethers = require("ethers");
+
+(async () => {
+  const provider = ethers.getDefaultProvider("goerli");
+  const privateKey = "your-private-key";
+  const wallet = new ethers.Wallet(privateKey);
+
+  const rawTx = {
+    to: "0xddB51f100672Cb252C67D516eb79931bf27cE3E6",
+    value: ethers.utils.parseEther("0.1"),
+    data: ethers.utils.toUtf8Bytes("web3byexample"),
+    nonce: await provider.getTransactionCount(wallet.address),
+    gasLimit: 25000,
+    gasPrice: await provider.getGasPrice(),
+  };
+
+  const signedTx = await wallet.signTransaction(rawTx);
+  console.log("signedTx", signedTx);
+
+  const tx = await provider.sendTransaction(signedTx);
+  console.log("txhash", tx.hash);
+})();
+```
+
+---
+
+```sh output focus=3:19
+❯ node send-transaction.js
+signedTx 0xf87981858459682f078261a894ddb51f100672cb252c67d516eb79931bf27ce3e688016345785d8a00008d7765623362796578616d706c651ba060b5fe7d1e2ec8bcaa6348a2b5d27f2d8563d081d1da4851454625e44d855f71a01649f0ec330818858260bd52f879322e6c50aeee4bb69529de45b1b0b0690813
+txhash 0x78f40ef4f512df4e6483cd671b18d1992e8103fd84b6b4e8bb92342e371151b4
+```
+
+</CH.Code>
+
+---
+
+Eureka! We can reduce the code using **wallet.sendTransaction()**.
+This method helps us do a lot of work, such as populating all fields in a transaction, signing it and sending it to the network.
+
+<CH.Code>
+
+```js send-transaction.js focus=8:11,14
+
+```
+
+---
+
+```sh output
+
+```
+
+</CH.Code>
+
+</CH.Spotlight>
