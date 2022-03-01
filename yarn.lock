@@ -30,30 +30,30 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
-"@code-hike/classer@0.3.0-next.27":
-  version "0.3.0-next.27"
-  resolved "https://registry.npmmirror.com/@code-hike/classer/-/classer-0.3.0-next.27.tgz#c364f5805446a5232c58fe6e08d00acec8e233c1"
-  integrity sha512-xWEE9JXETIxTnRKpm27eBraOgXxZ5c8go9ez1t/oP03lN9IquVeNkcuI4W+dvTHMWFZyQOXbvhyIcJfmfjS26A==
+"@code-hike/classer@0.3.0-next.28":
+  version "0.3.0-next.28"
+  resolved "https://registry.npmmirror.com/@code-hike/classer/-/classer-0.3.0-next.28.tgz#e8121af1e9f0128ecaabf7ccefc37236ce5692fd"
+  integrity sha512-JC1IqHCJCxGwvXrYB4NyjjCAdKJciq5DlP7lO3UeLeqaoQ+nGZvLilIDrZWifF+n8JDIzZrzpchCEjXFjFfjlA==
 
-"@code-hike/highlighter@0.3.0-next.27":
-  version "0.3.0-next.27"
-  resolved "https://registry.npmmirror.com/@code-hike/highlighter/-/highlighter-0.3.0-next.27.tgz#6fcd8771e94a200df1d3fbbad203a858ec35459b"
-  integrity sha512-n9e09VmJzy6Bobor/4oKIcJ7PGYNSIAE1fnliMFVExFk+Janu8NbYDOIm9v+46aDfZ0fZsJH2KAHgHEGBQwS/g==
+"@code-hike/highlighter@0.3.0-next.28":
+  version "0.3.0-next.28"
+  resolved "https://registry.npmmirror.com/@code-hike/highlighter/-/highlighter-0.3.0-next.28.tgz#88a6cbcb5356a575bf083cf00a58360120fa7ec0"
+  integrity sha512-DEnjQycKhL3bNCzO734kr7wF5HjvE0MIm4YvfEjZ1byJR4MlODfnErUuE2gBExpuptvvrvc4R6NSw9Z4IuRzyA==
   dependencies:
-    "@code-hike/utils" "0.3.0-next.27"
-    shiki "^0.9.14"
+    "@code-hike/utils" "0.3.0-next.28"
+    shiki "^0.10.1"
 
-"@code-hike/mdx@^0.3.0-next.14":
-  version "0.3.0-next.27"
-  resolved "https://registry.npmmirror.com/@code-hike/mdx/-/mdx-0.3.0-next.27.tgz#2954972f8cb9e807273575e262b6fa97ce1ec65d"
-  integrity sha512-9Sg2lV+YX7iHRMI4rCUgwXmU4+1FOHoAxGGzEc3gVdI3pBWJ136QYhZuKagYQFX3Vyi5iqn9oQmaXd/hrFQnSQ==
+"@code-hike/mdx@^0.3.0-next.28":
+  version "0.3.0-next.28"
+  resolved "https://registry.npmmirror.com/@code-hike/mdx/-/mdx-0.3.0-next.28.tgz#c0df74409df0395637f339b71a2b95381f2f2ccf"
+  integrity sha512-7njfGbh7X46LCFPMfaZqCHF2MhWTOMkO18WeUehfGSB+GWls+WBi7XhIOmxPCp8logtZAGu4l5CMEzF78lRxFQ==
   dependencies:
-    "@code-hike/highlighter" "0.3.0-next.27"
-    "@code-hike/mini-browser" "0.3.0-next.27"
-    "@code-hike/mini-editor" "0.3.0-next.27"
-    "@code-hike/scroller" "0.3.0-next.27"
-    "@code-hike/smooth-code" "0.3.0-next.27"
-    "@code-hike/utils" "0.3.0-next.27"
+    "@code-hike/highlighter" "0.3.0-next.28"
+    "@code-hike/mini-browser" "0.3.0-next.28"
+    "@code-hike/mini-editor" "0.3.0-next.28"
+    "@code-hike/scroller" "0.3.0-next.28"
+    "@code-hike/smooth-code" "0.3.0-next.28"
+    "@code-hike/utils" "0.3.0-next.28"
     "@codesandbox/sandpack-client" "^0.1.20"
     hast-util-to-estree "^1.4.0"
     is-plain-obj "^3.0.0"
@@ -61,62 +61,63 @@
     remark-rehype "^8.1.0"
     unified "^9.2.2"
     unist-util-visit "^2.0.0"
+    unist-util-visit-parents "^3.0.0"
 
-"@code-hike/mini-browser@0.3.0-next.27":
-  version "0.3.0-next.27"
-  resolved "https://registry.npmmirror.com/@code-hike/mini-browser/-/mini-browser-0.3.0-next.27.tgz#5410a86e5d14aaf198b07b8b213aa62a90d7f311"
-  integrity sha512-katiy2PoXmor0QaCa1qJNbkr85kB2zF55Oi/pGendiBas2QN0hbljZ9CsYiQspRBPuhJgv8IVfufITxe6gDdtQ==
+"@code-hike/mini-browser@0.3.0-next.28":
+  version "0.3.0-next.28"
+  resolved "https://registry.npmmirror.com/@code-hike/mini-browser/-/mini-browser-0.3.0-next.28.tgz#917f2362465e76fb13ef488b219914458dc3e769"
+  integrity sha512-Tm3mDKY3aEJzIdSG6NMYfq1MSSHVF6Ec62sEVqz/AePLyrRus+sYwQ+puhkaSm3aNz2/x5J2kzkEMBWfyD5dCw==
   dependencies:
-    "@code-hike/classer" "0.3.0-next.27"
-    "@code-hike/mini-frame" "0.3.0-next.27"
-    "@code-hike/utils" "0.3.0-next.27"
+    "@code-hike/classer" "0.3.0-next.28"
+    "@code-hike/mini-frame" "0.3.0-next.28"
+    "@code-hike/utils" "0.3.0-next.28"
     use-spring "^0.2.3"
 
-"@code-hike/mini-editor@0.3.0-next.27":
-  version "0.3.0-next.27"
-  resolved "https://registry.npmmirror.com/@code-hike/mini-editor/-/mini-editor-0.3.0-next.27.tgz#f83b9894809bfd5a76b9b9cbc2541203760975fb"
-  integrity sha512-sDGDnnizIvxDile2iz9OKOI6PRE+asSm/Irls5gW18k5Lh1xvHlEi/gN4giSS4QQbJaSVXeuQSl56SVSM3CxzA==
+"@code-hike/mini-editor@0.3.0-next.28":
+  version "0.3.0-next.28"
+  resolved "https://registry.npmmirror.com/@code-hike/mini-editor/-/mini-editor-0.3.0-next.28.tgz#4e8b26d01443565587ce22eeb9f3bf09da4d817d"
+  integrity sha512-r+p8kqa/3qkeoJIf1crHOc2xNnk0lX186+RH5MQKQn2VvK4d+9Yg8XGHuouDBj/rQw2Y0TiU0WixotP6Jv0mHg==
   dependencies:
-    "@code-hike/classer" "0.3.0-next.27"
-    "@code-hike/mini-frame" "0.3.0-next.27"
-    "@code-hike/mini-terminal" "0.3.0-next.27"
-    "@code-hike/smooth-code" "0.3.0-next.27"
+    "@code-hike/classer" "0.3.0-next.28"
+    "@code-hike/mini-frame" "0.3.0-next.28"
+    "@code-hike/mini-terminal" "0.3.0-next.28"
+    "@code-hike/smooth-code" "0.3.0-next.28"
     use-spring "^0.2.3"
 
-"@code-hike/mini-frame@0.3.0-next.27":
-  version "0.3.0-next.27"
-  resolved "https://registry.npmmirror.com/@code-hike/mini-frame/-/mini-frame-0.3.0-next.27.tgz#ddff37ffe8c3eb29f1f934fd40b78d327dbf9ce0"
-  integrity sha512-VmDe34AjA9wXZuDiIFu329uQb0Lk13EocPLtf2YcOVsxjZ3AZa2Og2gmSpS8FxwkVqkuHkgXYBEV+C7VWde+rg==
+"@code-hike/mini-frame@0.3.0-next.28":
+  version "0.3.0-next.28"
+  resolved "https://registry.npmmirror.com/@code-hike/mini-frame/-/mini-frame-0.3.0-next.28.tgz#61fc9ba70d6e84c7b857dd8ffc5f471b55ba6ae7"
+  integrity sha512-udOWoppXyGUbDGta2Brsi4i9o5JlmsDVC4sTMLyvyu4WwO5VJ1Qmnf6KpIxZCBfqy1lEAXeOaZ5vohH7SUYi8Q==
   dependencies:
-    "@code-hike/classer" "0.3.0-next.27"
-    "@code-hike/utils" "0.3.0-next.27"
+    "@code-hike/classer" "0.3.0-next.28"
+    "@code-hike/utils" "0.3.0-next.28"
 
-"@code-hike/mini-terminal@0.3.0-next.27":
-  version "0.3.0-next.27"
-  resolved "https://registry.npmmirror.com/@code-hike/mini-terminal/-/mini-terminal-0.3.0-next.27.tgz#c2b45dee0fbff91cf9d4db59e9f3475f4338e9a1"
-  integrity sha512-TYBGr6QpC5vmsfebAm4gGBrDfxCg4Qwt6CGWC6ZsqsY/8SbPNlPsIof/Fkkj2l46UGskTcFg5MIUZgJRyobwzQ==
+"@code-hike/mini-terminal@0.3.0-next.28":
+  version "0.3.0-next.28"
+  resolved "https://registry.npmmirror.com/@code-hike/mini-terminal/-/mini-terminal-0.3.0-next.28.tgz#85b8f65b6b7dc0ef8333216c31071f1f1936d54a"
+  integrity sha512-Ny//nW16RUx9grzmfPtcL4q0a9BPjy3rzA6OHB0m16X698ubuVAe46w0Aw63JpyqhlRQa5uhkAzhx1Gt6zur+Q==
   dependencies:
-    "@code-hike/mini-frame" "0.3.0-next.27"
+    "@code-hike/mini-frame" "0.3.0-next.28"
 
-"@code-hike/scroller@0.3.0-next.27":
-  version "0.3.0-next.27"
-  resolved "https://registry.npmmirror.com/@code-hike/scroller/-/scroller-0.3.0-next.27.tgz#4ec098bba86d00406a01151189df01531d60de63"
-  integrity sha512-8ntrIuUZdRWbAFSQCFW0ph8SiQHbiziTPH8vIWapu2OwsmSl2rZGZANvTwL8Lo/fVKmd4AWZGgmSnd9xv3WYXA==
+"@code-hike/scroller@0.3.0-next.28":
+  version "0.3.0-next.28"
+  resolved "https://registry.npmmirror.com/@code-hike/scroller/-/scroller-0.3.0-next.28.tgz#3ae92940f7831f2dbffceb525de4ac34e87c1330"
+  integrity sha512-q1kZLpkXnYSgb+1HxmjPqBT8TuhXc3t8i3PJ423g6WV06m4zf8IyZTn2vMNIYQ7fe4qypbjPMhQxTk5++jkUkw==
 
-"@code-hike/smooth-code@0.3.0-next.27":
-  version "0.3.0-next.27"
-  resolved "https://registry.npmmirror.com/@code-hike/smooth-code/-/smooth-code-0.3.0-next.27.tgz#712c071605bdfe3f2cc534cc0362e630c1640bc3"
-  integrity sha512-ti6P5+c0tEkF7NM4euGqM15pXnNm71RViC2tnu68OCckvgKx39GX5kknb6dvQLF17tb7x5uBjwZaq0Rlkv6n/A==
+"@code-hike/smooth-code@0.3.0-next.28":
+  version "0.3.0-next.28"
+  resolved "https://registry.npmmirror.com/@code-hike/smooth-code/-/smooth-code-0.3.0-next.28.tgz#87d6b880dd07e676ac39f7b8a4ae1144db4ef573"
+  integrity sha512-VR1ClPUzGHYm1Dy7ks6kWhj4/VxY/XKvOMsQ9cqMSaHUp2TQT/DoOQG8Xg+WZAni9EqUt352YyHsg4tctpyi6A==
   dependencies:
-    "@code-hike/highlighter" "0.3.0-next.27"
-    "@code-hike/utils" "0.3.0-next.27"
+    "@code-hike/highlighter" "0.3.0-next.28"
+    "@code-hike/utils" "0.3.0-next.28"
     diff "^4.0.2"
     use-spring "^0.2.3"
 
-"@code-hike/utils@0.3.0-next.27":
-  version "0.3.0-next.27"
-  resolved "https://registry.npmmirror.com/@code-hike/utils/-/utils-0.3.0-next.27.tgz#edfbc821ba9386da59712544fc057a12e797a05b"
-  integrity sha512-ZkNJozmeDxzsMS/UaDh2RYY+sdBLwOVVCYj8B/jYHpm6F8kLd0unfujeyTxmUR7gyyPzEFosN9JrBI6re7bpWg==
+"@code-hike/utils@0.3.0-next.28":
+  version "0.3.0-next.28"
+  resolved "https://registry.npmmirror.com/@code-hike/utils/-/utils-0.3.0-next.28.tgz#d9a21f981a7bcda4e9a12355a418d7dab2c47297"
+  integrity sha512-r5pH8xuP4rqV6NU56bGJcUAnEEO0PjwUdM/Fd8hip3/VLy0g3gAMbFcqCACQ+v4cjOkHfcgBxVph6slbQP6HWw==
 
 "@codesandbox/sandpack-client@^0.1.20":
   version "0.1.20"
@@ -610,9 +611,9 @@
     picomatch "^2.2.2"
 
 "@sindresorhus/is@^4.0.0":
-  version "4.4.0"
-  resolved "https://registry.npmmirror.com/@sindresorhus/is/-/is-4.4.0.tgz#e277e5bdbdf7cb1e20d320f02f5e2ed113cd3185"
-  integrity sha512-QppPM/8l3Mawvh4rn9CNEYIU9bxpXUCRMaX9yUpvBk1nMKusLKpfXGDEKExKaPhLzcn3lzil7pR6rnJ11HgeRQ==
+  version "4.6.0"
+  resolved "https://registry.npmmirror.com/@sindresorhus/is/-/is-4.6.0.tgz#3c7c9c46e678feefe7a2e5bb609d3dbd665ffb3f"
+  integrity sha512-t09vSN3MdfsyCHoFcTRCH/iUtG7OJ0CsjzB8cjAmKc/va/kIgeDI/TxsigdncE/4be734m0cvIYwNaV4i2XqAw==
 
 "@szmarczak/http-timer@^4.0.5":
   version "4.0.6"
@@ -1158,9 +1159,9 @@ editions@^1.3.3:
   integrity sha512-gzao+mxnYDzIysXKMQi/+M1mjy/rjestjg6OPoYTtI+3Izp23oiGZitsl9lPDPiTGXbcSIk1iJWhliSaglxnUg==
 
 electron-to-chromium@^1.4.71:
-  version "1.4.73"
-  resolved "https://registry.npmmirror.com/electron-to-chromium/-/electron-to-chromium-1.4.73.tgz#422f6f514315bcace9615903e4a9b6b9fa283137"
-  integrity sha512-RlCffXkE/LliqfA5m29+dVDPB2r72y2D2egMMfIy3Le8ODrxjuZNVo4NIC2yPL01N4xb4nZQLwzi6Z5tGIGLnA==
+  version "1.4.75"
+  resolved "https://registry.npmmirror.com/electron-to-chromium/-/electron-to-chromium-1.4.75.tgz#d1ad9bb46f2f1bf432118c2be21d27ffeae82fdd"
+  integrity sha512-LxgUNeu3BVU7sXaKjUDD9xivocQLxFtq6wgERrutdY/yIOps3ODOZExK1jg8DTEg4U8TUCb5MLGeWFOYuxjF3Q==
 
 elliptic@6.5.4:
   version "6.5.4"
@@ -2754,10 +2755,10 @@ section-matter@^1.0.0:
     extend-shallow "^2.0.1"
     kind-of "^6.0.0"
 
-shiki@^0.9.14:
-  version "0.9.15"
-  resolved "https://registry.npmmirror.com/shiki/-/shiki-0.9.15.tgz#2481b46155364f236651319d2c18e329ead6fa44"
-  integrity sha512-/Y0z9IzhJ8nD9nbceORCqu6NgT9X6I8Fk8c3SICHI5NbZRLdZYFaB233gwct9sU0vvSypyaL/qaKvzyQGJBZSw==
+shiki@^0.10.1:
+  version "0.10.1"
+  resolved "https://registry.npmmirror.com/shiki/-/shiki-0.10.1.tgz#6f9a16205a823b56c072d0f1a0bcd0f2646bef14"
+  integrity sha512-VsY7QJVzU51j5o1+DguUd+6vmCmZ5v/6gYu4vyYAhzjuNQU6P/vmSy4uQaOhvje031qQMiW0d2BwgMH52vqMng==
   dependencies:
     jsonc-parser "^3.0.0"
     vscode-oniguruma "^1.6.1"
@@ -3107,9 +3108,9 @@ vfile@^5.0.0:
     vfile-message "^3.0.0"
 
 vscode-oniguruma@^1.6.1:
-  version "1.6.1"
-  resolved "https://registry.npmmirror.com/vscode-oniguruma/-/vscode-oniguruma-1.6.1.tgz#2bf4dfcfe3dd2e56eb549a3068c8ee39e6c30ce5"
-  integrity sha512-vc4WhSIaVpgJ0jJIejjYxPvURJavX6QG41vu0mGhqywMkQqulezEqEQ3cO3gc8GvcOpX6ycmKGqRoROEMBNXTQ==
+  version "1.6.2"
+  resolved "https://registry.npmmirror.com/vscode-oniguruma/-/vscode-oniguruma-1.6.2.tgz#aeb9771a2f1dbfc9083c8a7fdd9cccaa3f386607"
+  integrity sha512-KH8+KKov5eS/9WhofZR8M8dMHWN2gTxjMsG4jd04YhpbPR91fUj7rYQ2/XjeHCJWbg7X++ApRIU9NUwM2vTvLA==
 
 vscode-textmate@5.2.0:
   version "5.2.0"
