@@ -2,12 +2,11 @@ const ethers = require("ethers");
 
 (async () => {
   const provider = ethers.getDefaultProvider("goerli");
-  const privateKey =
-    "c1edce0700e9d002c30f15f6de60eb5ffffdeb79629f663d8862aba7af3f689d";
+  const privateKey = "your-private-key";
   const wallet = new ethers.Wallet(privateKey, provider);
 
   const tx = {
-    to: "0x294B0bBc1721402Bf6d77D46aAB72C1C2C3560BD",
+    to: "0xddB51f100672Cb252C67D516eb79931bf27cE3E6",
     value: ethers.utils.parseEther("0.1"),
   };
 
