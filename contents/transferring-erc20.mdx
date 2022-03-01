@@ -1,0 +1,194 @@
+One of the most significant smart contract standards on Ethereum is known as ERC-20, which has emerged as the technical standard used for all smart contracts on the Ethereum blockchain for fungible token implementations.
+We can call **transfer** function of ERC-20 token contract to transfer tokens from one address to another.
+
+<CH.Spotlight>
+
+<CH.Code>
+
+```js transfer-erc20.js
+const ethers = require("ethers");
+
+(async () => {
+  const abi = [
+    // Read-Only Functions
+    "function balanceOf(address owner) view returns (uint256)",
+    "function decimals() view returns (uint8)",
+    "function symbol() view returns (string)",
+
+    // Authenticated Functions
+    "function transfer(address to, uint amount) returns (bool)",
+
+    // Events
+    "event Transfer(address indexed from, address indexed to, uint amount)",
+  ];
+
+  const usdc = "0xD87Ba7A50B2E7E660f678A895E4B72E7CB4CCd9C";
+  const usdcDecimals = 6;
+
+  const provider = ethers.getDefaultProvider("goerli");
+  const privateKey = "your-private-key";
+  const wallet = new ethers.Wallet(privateKey, provider);
+  const erc20_rw = new ethers.Contract(usdc, abi, wallet);
+
+  const receipt = "0xddB51f100672Cb252C67D516eb79931bf27cE3E6";
+  const amount = ethers.utils.parseUnits("0.1", usdcDecimals);
+  const tx = await erc20_rw.transfer(receipt, amount);
+  console.log("tx has been sent, waiting for confirmation. hash is ", tx.hash);
+
+  await tx.wait();
+
+  console.log(
+    "balance",
+    ethers.utils.formatUnits(await erc20_rw.balanceOf(receipt), usdcDecimals)
+  );
+})();
+```
+
+---
+
+```sh output
+➜ node transfer-erc20.js
+tx has been sent, waiting for confirmation. hash: 0xc851be4108a7d3eec6e1526e38fadf2cc7851db96a5d5b5987665b7b73836ad0
+balance 0.1
+```
+
+</CH.Code>
+
+---
+
+Config a Human-Readable ABI for interacting with the contract, we
+must include any fragment we wish to use.
+
+```js transfer-erc20.js focus=4:15
+
+```
+
+---
+
+And set a contract address, this also can be an ENS name.
+We use **USDC** on Goerli as an example.
+
+```js transfer-erc20.js focus=17:18
+
+```
+
+---
+
+Create a contract instance. There are two types of contract instances,
+
+```js transfer-erc20.js focus=20:23
+
+```
+
+---
+
+Read-Only; By connecting to a Provider, allows:
+
+\- Any constant function
+
+\- Querying Filters
+
+\- Populating Unsigned Transactions for non-constant methods
+
+\- Estimating Gas for non-constant (as an anonymous sender)
+
+\- Static Calling non-constant methods (as anonymous sender)
+
+```js transfer-erc20.js focus=21
+const ethers = require("ethers");
+
+(async () => {
+  const abi = [
+    // Read-Only Functions
+    "function balanceOf(address owner) view returns (uint256)",
+    "function decimals() view returns (uint8)",
+    "function symbol() view returns (string)",
+
+    // Authenticated Functions
+    "function transfer(address to, uint amount) returns (bool)",
+
+    // Events
+    "event Transfer(address indexed from, address indexed to, uint amount)",
+  ];
+
+  const usdc = "0xD87Ba7A50B2E7E660f678A895E4B72E7CB4CCd9C";
+  const usdcDecimals = 6;
+
+  const provider = ethers.getDefaultProvider("goerli");
+  const erc20 = new ethers.Contract(usdc, abi, provider);
+
+  const privateKey = "your-private-key";
+  const wallet = new ethers.Wallet(privateKey, provider);
+  const erc20_rw = new ethers.Contract(usdc, abi, wallet);
+
+  const receipt = "0xddB51f100672Cb252C67D516eb79931bf27cE3E6";
+  const amount = ethers.utils.parseUnits("0.1", usdcDecimals);
+  const tx = await erc20_rw.transfer(receipt, amount);
+  console.log("tx has been sent, waiting for confirmation. hash is ", tx.hash);
+
+  await tx.wait();
+
+  console.log(
+    "balance",
+    ethers.utils.formatUnits(await erc20_rw.balanceOf(receipt), usdcDecimals)
+  );
+})();
+```
+
+---
+
+Read-Write; By connecting to a Signer, allows:
+
+\- Everything from Read-Only (except as Signer, not anonymous)
+
+\- Sending transactions for non-constant functions
+
+```js transfer-erc20.js focus=23
+
+```
+
+---
+
+Transfer 0.1 UDSC to receipt. As the code shows, we can directly call function **transfer** of the contract(abi).
+
+<CH.Code>
+
+```js transfer-erc20.js focus=11,25:28
+
+```
+
+---
+
+```sh output focus=2
+
+```
+
+</CH.Code>
+
+---
+
+Wait for the transaction to be mined.
+
+```js transfer-erc20.js focus=30
+
+```
+
+---
+
+Checkout the receipt balance. You will see the balance has increased.
+
+<CH.Code>
+
+```js transfer-erc20.js focus=32:35
+
+```
+
+---
+
+```sh output focus=3
+
+```
+
+</CH.Code>
+
+</CH.Spotlight>
