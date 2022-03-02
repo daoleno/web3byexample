@@ -1,16 +1,19 @@
-This is a minimal Next.js site using [Code Hike](https://codehike.org/).
+# Web3 by Example
 
-Clone it locally:
+[web3byexample.com](https://web3byexample.com)
 
+Web3 by Example is a hands-on introduction to web3 development using annotated example programs.
+
+## Run
+
+```sh
+# install dependencies
+yarn install
+
+# run project
+yarn dev
 ```
-$ yarn create next-app -e https://github.com/pomber/code-hike-sample
-$ cd my-app
-$ yarn dev
-```
 
-Links to the important parts:
-- [package.json dependencies](https://github.com/pomber/code-hike-sample/blob/662aa7f66ef9781daf5e233c655181c570196cdf/package.json#L7-L9)
-- [remark plugin configuration](https://github.com/pomber/code-hike-sample/blob/662aa7f66ef9781daf5e233c655181c570196cdf/next.config.js#L16)
-- [css import](https://github.com/pomber/code-hike-sample/blob/662aa7f66ef9781daf5e233c655181c570196cdf/pages/_app.js#L1)
+## License
 
-For feedback or questions go to [Code Hike's GitHub Discussions](https://github.com/code-hike/codehike/discussions)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
