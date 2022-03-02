@@ -73,32 +73,32 @@ export const sections = [
     },
     {
       title: "Deploying a Smart Contract",
-      link: "#foo",
+      link: "deploying-a-smart-contract",
       category: "Smart Contracts",
     },
     {
       title: "Loading a Smart Contract",
-      link: "#foo",
+      link: "loading-a-smart-contracto",
       category: "Smart Contracts",
     },
     {
       title: "Querying a Smart Contract",
-      link: "#foo",
+      link: "querying-a-smart-contract",
       category: "Smart Contracts",
     },
     {
       title: "Writing to a Smart Contract",
-      link: "#foo",
+      link: "writing-to-a-smart-contract",
       category: "Smart Contracts",
     },
     {
       title: "Reading Smart Contract Bytecode",
-      link: "#foo",
+      link: "reading-smart-contract-bytecode",
       category: "Smart Contracts",
     },
     {
       title: "Querying an ERC20 Token Smart Contract",
-      link: "#foo",
+      link: "querying-an-erc20-token-smart-contract",
       category: "Smart Contracts",
     },
   ],
