@@ -19,7 +19,7 @@ const ethers = require("ethers");
   // This can be an address or an ENS name. We use USDC address on goerli testnet
   const usdc = "0xD87Ba7A50B2E7E660f678A895E4B72E7CB4CCd9C";
   const usdcDecimals = 6;
-  const provider = ethers.getDefaultProvider("goerli");
+  const provider = new ethers.providers.AlchemyProvider("goerli");
 
   // Read-Only; By connecting to a Provider, allows:
   // - Any constant function

@@ -25,7 +25,7 @@ const ethers = require("ethers");
   const usdc = "0xD87Ba7A50B2E7E660f678A895E4B72E7CB4CCd9C";
   const usdcDecimals = 6;
 
-  const provider = ethers.getDefaultProvider("goerli");
+  const provider = new ethers.providers.AlchemyProvider("goerli");
   const privateKey = "your-private-key";
   const wallet = new ethers.Wallet(privateKey, provider);
   const erc20_rw = new ethers.Contract(usdc, abi, wallet);
@@ -114,7 +114,7 @@ const ethers = require("ethers");
   const usdc = "0xD87Ba7A50B2E7E660f678A895E4B72E7CB4CCd9C";
   const usdcDecimals = 6;
 
-  const provider = ethers.getDefaultProvider("goerli");
+  const provider = new ethers.providers.AlchemyProvider("goerli");
   const erc20 = new ethers.Contract(usdc, abi, provider);
 
   const privateKey = "your-private-key";

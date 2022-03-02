@@ -5,7 +5,7 @@ const { ethers } = require("ethers");
   const isValid = ethers.utils.isAddress(address);
   console.log("isValid", isValid);
 
-  const provider = ethers.getDefaultProvider();
+  const provider = new ethers.providers.AlchemyProvider();
   const weth = "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2";
   const code = await provider.getCode(weth);
   const isContract = code !== "0x";

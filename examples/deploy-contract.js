@@ -1,4 +1,4 @@
-const { ethers, getDefaultProvider } = require("ethers");
+const { ethers } = require("ethers");
 
 (async () => {
   const abi = [

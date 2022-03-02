@@ -8,7 +8,7 @@ The simplest transaction is transferring ETH from one account to another. We can
 const ethers = require("ethers");
 
 (async () => {
-  const provider = ethers.getDefaultProvider("goerli");
+  const provider = new ethers.providers.AlchemyProvider("goerli");
   const privateKey = "your-private-key";
   const wallet = new ethers.Wallet(privateKey, provider);
 
@@ -107,7 +107,7 @@ If **status** is `1`, it means the transaction was successfully mined.
 const ethers = require("ethers");
 
 (async () => {
-  const provider = ethers.getDefaultProvider("goerli");
+  const provider = new ethers.providers.AlchemyProvider("goerli");
   const privateKey = "your-private-key";
   const wallet = new ethers.Wallet(privateKey, provider);
 

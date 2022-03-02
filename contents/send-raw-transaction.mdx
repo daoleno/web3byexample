@@ -8,7 +8,7 @@ An Ethereum transaction refers to an action initiated by an externally-owned acc
 const ethers = require("ethers");
 
 (async () => {
-  const provider = ethers.getDefaultProvider("goerli");
+  const provider = new ethers.providers.AlchemyProvider("goerli");
   const privateKey = "your-private-key";
   const wallet = new ethers.Wallet(privateKey, provider);
 
@@ -41,7 +41,7 @@ As usual, we need provider, private key and wallet to send a transaction.
 const ethers = require("ethers");
 
 (async () => {
-  const provider = ethers.getDefaultProvider("goerli");
+  const provider = new ethers.providers.AlchemyProvider("goerli");
   const privateKey = "your-private-key";
   const wallet = new ethers.Wallet(privateKey);
 
@@ -72,7 +72,7 @@ Create a raw transaction object that is ready to be signed and sent.
 const ethers = require("ethers");
 
 (async () => {
-  const provider = ethers.getDefaultProvider("goerli");
+  const provider = new ethers.providers.AlchemyProvider("goerli");
   const privateKey = "your-private-key";
   const wallet = new ethers.Wallet(privateKey);
 
@@ -119,7 +119,7 @@ The signedTx is the signed transaction in Recursive Length Prefix (RLP) encoded 
 const ethers = require("ethers");
 
 (async () => {
-  const provider = ethers.getDefaultProvider("goerli");
+  const provider = new ethers.providers.AlchemyProvider("goerli");
   const privateKey = "your-private-key";
   const wallet = new ethers.Wallet(privateKey);
 
@@ -160,7 +160,7 @@ Submit transaction to the network to be mined. The transaction must be signed, a
 const ethers = require("ethers");
 
 (async () => {
-  const provider = ethers.getDefaultProvider("goerli");
+  const provider = new ethers.providers.AlchemyProvider("goerli");
   const privateKey = "your-private-key";
   const wallet = new ethers.Wallet(privateKey);
 

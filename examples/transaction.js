@@ -4,7 +4,7 @@ const { ethers } = require("ethers");
   const txHash =
     "0x86025d602b75fadab1e2ec4f8c3d69867bb85abd665c14b739367f489799c18f";
 
-  const provider = ethers.getDefaultProvider();
+  const provider = new ethers.providers.AlchemyProvider();
 
   const tx = await provider.getTransaction(txHash);
   console.log("tx", tx);

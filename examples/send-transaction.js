@@ -1,7 +1,6 @@
 // const ethers = require("ethers");
 
 // (async () => {
-//   // const provider = ethers.getDefaultProvider("goerli");
 //   const provider = new ethers.providers.AlchemyProvider("goerli");
 //   const privateKey = "your-private-key";
 //   const wallet = new ethers.Wallet(privateKey);
@@ -27,7 +26,6 @@
 const ethers = require("ethers");
 
 (async () => {
-  // const provider = ethers.getDefaultProvider("goerli");
   const provider = new ethers.providers.AlchemyProvider("goerli");
   const privateKey = "your-private-key";
   const wallet = new ethers.Wallet(privateKey, provider);

@@ -11,7 +11,7 @@ const { ethers } = require("ethers");
   const txHash =
     "0x86025d602b75fadab1e2ec4f8c3d69867bb85abd665c14b739367f489799c18f";
 
-  const provider = ethers.getDefaultProvider();
+  const provider = new ethers.providers.AlchemyProvider();
 
   const tx = await provider.getTransaction(txHash);
   console.log("tx", tx);
@@ -80,7 +80,7 @@ We can iterate over all transactions in a block, and query a specific transactio
 const { ethers } = require("ethers");
 
 (async () => {
-  const provider = ethers.getDefaultProvider();
+  const provider = new ethers.providers.AlchemyProvider();
   const block = await provider.getBlock(14292113);
   for (const txHash of block.transactions) {
     const tx = await provider.getTransaction(txHash);

@@ -8,7 +8,7 @@ Block is a collection of required information (a block header) about the compris
 const { ethers } = require("ethers");
 
 (async () => {
-  const provider = ethers.getDefaultProvider();
+  const provider = new ethers.providers.AlchemyProvider();
   const block = await provider.getBlock(14292113);
   console.log(block);
 })();
@@ -58,7 +58,7 @@ Get the block from the network at the latest height.
 const { ethers } = require("ethers");
 
 (async () => {
-  const provider = ethers.getDefaultProvider();
+  const provider = new ethers.providers.AlchemyProvider();
   const block = await provider.getBlock();
   console.log(block);
 })();
@@ -72,7 +72,7 @@ Or specify a block number.
 const { ethers } = require("ethers");
 
 (async () => {
-  const provider = ethers.getDefaultProvider();
+  const provider = new ethers.providers.AlchemyProvider();
   const block = await provider.getBlock(14292113);
   console.log(block);
 })();
@@ -103,7 +103,7 @@ Let's see what the block contains.
 const { ethers } = require("ethers");
 
 (async () => {
-  const provider = ethers.getDefaultProvider();
+  const provider = new ethers.providers.AlchemyProvider();
   const block = await provider.getBlock(14292113);
   console.log(block);
 })();

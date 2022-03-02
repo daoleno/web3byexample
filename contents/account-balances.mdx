@@ -80,7 +80,7 @@ If ens is supported by network, you can use it to replace the address.
 const { ethers } = require("ethers");
 
 (async () => {
-  const provider = new ethers.getDefaultProvider("goerli");
+  const provider = new ethers.providers.AlchemyProvider("goerli");
   const balance = await provider.getBalance("ethers.eth");
 
   console.log(ethers.utils.formatEther(balance));
