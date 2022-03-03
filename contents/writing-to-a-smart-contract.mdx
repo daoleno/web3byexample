@@ -1,0 +1,123 @@
+In this example we’ll see how to write a smart contract function from JavaScript.
+
+<CH.Spotlight>
+
+<CH.Code>
+
+```js write-contract.js
+const { ethers } = require("ethers");
+
+(async () => {
+  const abi = [
+    {
+      inputs: [],
+      name: "get",
+      outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+      stateMutability: "view",
+      type: "function",
+    },
+    {
+      inputs: [{ internalType: "uint256", name: "x", type: "uint256" }],
+      name: "set",
+      outputs: [],
+      stateMutability: "nonpayable",
+      type: "function",
+    },
+  ];
+
+  const address = "0x4887B56a6ec7E25e0061d58194BB76e3078153f4";
+  const provider = new ethers.providers.AlchemyProvider("goerli");
+  const privateKey =
+    "c1edce0700e9d002c30f15f6de60eb5ffffdeb79629f663d8862aba7af3f689d";
+  const wallet = new ethers.Wallet(privateKey, provider);
+  const instance_rw = new ethers.Contract(address, abi, wallet);
+
+  const tx = await instance_rw.set(42);
+  console.log("hash", tx.hash);
+
+  const receipt = await tx.wait();
+  console.log("status", receipt.status);
+
+  const value = await instance_rw.get();
+  console.log("value", value.toString());
+})();
+```
+
+---
+
+```sh output
+➜ node write-contract.js
+hash 0x460a3645a3adcfbc3842920cfe6fbcd7bd048d006d45489b777caf7d520be792
+status 1
+value 42
+```
+
+</CH.Code>
+
+---
+
+We will load a read-write contract that has a signer can send transactions.
+
+```js write-contract.js focus=4:26
+
+```
+
+---
+
+In the <ins>[SimpleStore](/smart-contract-compilation-abi)</ins> contract,
+we have a function called `set()` that takes a single parameter _x_.
+We will set the x value to 42.
+This action sends a transaction to the network.
+
+<CH.Code>
+
+```js write-contract.js focus=28:29
+
+```
+
+---
+
+```sh output focus=2
+
+```
+
+</CH.Code>
+
+---
+
+Wait for the transaction to be mined. If the status of receipt is 1, that means the transaction was mined successfully.
+
+<CH.Code>
+
+```js write-contract.js focus=31:32
+
+```
+
+---
+
+```sh output focus=3
+
+```
+
+</CH.Code>
+
+---
+
+After the transaction is mined, we can read the value. See, the value is now 42.
+That means that the contract has been updated.
+
+<CH.Code>
+
+```js write-contract.js focus=34:35
+
+```
+
+---
+
+```sh output focus=4
+
+```
+
+</CH.Code>
+
+</CH.Spotlight>

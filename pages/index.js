@@ -104,46 +104,46 @@ export const sections = [
   ],
   [
     {
-      title: "Subscribing to Event Logs",
+      title: "Subscribing to Event Logs(TODO)",
       link: "#foo",
       category: "Events",
     },
     {
-      title: "Reading Event Logs",
+      title: "Reading Event Logs(TODO)",
       link: "#foo",
       category: "Events",
     },
     {
-      title: "Reading ERC-20 Token Event Logs",
+      title: "Reading ERC-20 Token Event Logs(TODO)",
       link: "#foo",
       category: "Events",
     },
     {
-      title: "Reading 0x Protocol Event Logs",
+      title: "Reading 0x Protocol Event Logs(TODO)",
       link: "#foo",
       category: "Events",
     },
   ],
   [
     {
-      title: "Generating a Signature",
+      title: "Generating a Signature(TODO)",
       link: "#foo",
       category: "Signatures",
     },
     {
-      title: "Verifying a Signature",
+      title: "Verifying a Signature(TODO)",
       link: "#foo",
       category: "Signatures",
     },
   ],
   [
     {
-      title: "Faucets",
+      title: "Faucets(TODO)",
       link: "#foo",
       category: "Testing",
     },
     {
-      title: "Using a Simulated Client",
+      title: "Using a Simulated Client(TODO)",
       link: "#foo",
       category: "Testing",
     },
