@@ -1,0 +1,109 @@
+As <ins>[previous example](/deploying-a-smart-contract)</ins> shows, we have deployed a simple smart contract and got a contract address.
+Now, we will connect to this contract.
+
+<CH.Spotlight>
+
+<CH.Code>
+
+```js load-contract.js
+const { ethers } = require("ethers");
+
+(async () => {
+  const abi = [
+    {
+      inputs: [],
+      name: "get",
+      outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+      stateMutability: "view",
+      type: "function",
+    },
+    {
+      inputs: [{ internalType: "uint256", name: "x", type: "uint256" }],
+      name: "set",
+      outputs: [],
+      stateMutability: "nonpayable",
+      type: "function",
+    },
+  ];
+
+  const address = "0x4887B56a6ec7E25e0061d58194BB76e3078153f4";
+  const provider = new ethers.providers.AlchemyProvider("goerli");
+  const instance = new ethers.Contract(address, abi, provider);
+  console.log("address", instance.address);
+
+  const privateKey = "your-private-key";
+  const signer = new ethers.Wallet(privateKey, provider);
+  const instance_rw = new ethers.Contract(address, abi, signer);
+  console.log("signer ", instance_rw.signer.address);
+})();
+```
+
+---
+
+```sh output
+➜ node load-contract.js
+address 0x4887B56a6ec7E25e0061d58194BB76e3078153f4
+signer  0x67CF3bF40b2b3b3D68F6c361AEf81F8AEb2dB637
+```
+
+</CH.Code>
+
+---
+
+Creating a new instance of a Contract connects to an existing contract by specifying its **address** on the blockchain, its **abi** (used to populate the class' methods) and a **providerOrSigner**.
+
+```js load-contract.js focus=4:22,26:27
+
+```
+
+---
+
+If a Provider is given, the contract has only read-only access, allows:
+
+\- Any constant function
+
+\- Querying Filters
+
+\- Populating Unsigned Transactions for non-constant methods
+
+\- Estimating Gas for non-constant (as an anonymous sender)
+
+\- Static Calling non-constant methods (as anonymous sender)
+
+<CH.Code>
+
+```js load-contract.js focus=23:24
+
+```
+
+---
+
+```sh output focus=2
+
+```
+
+</CH.Code>
+
+---
+
+While a Signer(wallet) offers access to state manipulating methods.
+
+\- Everything from Read-Only (except as Signer, not anonymous)
+
+\- Sending transactions for non-constant functions
+
+<CH.Code>
+
+```js load-contract.js focus=28:29
+
+```
+
+---
+
+```sh output focus=3
+
+```
+
+</CH.Code>
+
+</CH.Spotlight>

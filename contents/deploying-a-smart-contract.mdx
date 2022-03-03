@@ -90,7 +90,7 @@ Create a wallet that can sign transactions.
 
 ---
 
-Creates a new instance of a ContractFactory for the contract described by the interface and bytecode initcode.
+Create a new instance of a ContractFactory for the contract described by the interface and bytecode initcode.
 The **Contract Factory** sends a special type of transaction, an initcode transaction (i.e. the to field is null, and the data field is the initcode) where the initcode will be evaluated and the result becomes the new code to be deployed as a new contract.
 
 ```js deploy-contract.js focus=28

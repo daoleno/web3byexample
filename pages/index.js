@@ -78,7 +78,7 @@ export const sections = [
     },
     {
       title: "Loading a Smart Contract",
-      link: "loading-a-smart-contracto",
+      link: "loading-a-smart-contract",
       category: "Smart Contracts",
     },
     {
