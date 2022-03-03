@@ -1,0 +1,96 @@
+Let's get an real erc20 contract on the mainnet and see how it goes.
+
+<CH.Spotlight>
+
+<CH.Code>
+
+```js query-erc20.js
+const { ethers } = require("ethers");
+const abi = require("./weth-abi.json");
+
+(async () => {
+  const weth = "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2";
+  const provider = new ethers.providers.AlchemyProvider();
+  const instance = new ethers.Contract(weth, abi, provider);
+
+  const name = await instance.name();
+  const symbol = await instance.symbol();
+  const totalSupply = await instance.totalSupply();
+  const decimals = await instance.decimals();
+  const balance = await instance.balanceOf("vitalik.eth");
+  const allowance = await instance.allowance("vitalik.eth", weth);
+
+  console.log("weth", {
+    name,
+    symbol,
+    totalSupply: totalSupply.toString(),
+    decimals: decimals.toString(),
+    balance: ethers.utils.formatEther(balance),
+    allowance: allowance.toString(),
+  });
+})();
+```
+
+---
+
+```sh output
+➜ node query-erc20.js
+weth {
+  name: 'Wrapped Ether',
+  symbol: 'WETH',
+  totalSupply: '7118802459538305134330420',
+  decimals: '18',
+  balance: '0.05',
+  allowance: '0'
+}
+```
+
+</CH.Code>
+
+---
+
+Take a look at the <ins>[WETH](https://etherscan.io/address/0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2#code)</ins> contract on Etherscan.
+If the contract is verified, etherscan will show you the source code, abi and some other information.
+You can download the abi from <ins>[this link](http://api.etherscan.io/api?module=contract&action=getabi&address=0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2&format=raw)</ins>.
+
+Save and load it in the code.
+
+```js query-erc20.js focus=2
+
+```
+
+---
+
+We use weth address, abi and provider to create a contract instance.
+
+```js query-erc20.js focus=5:7
+
+```
+
+---
+
+Get the information of the contract is easy.
+
+```js query-erc20.js focus=9:14
+
+```
+
+---
+
+Oh, vitalik has 0.05 WETH.
+
+<CH.Code>
+
+```js query-erc20.js focus=9:14
+
+```
+
+---
+
+```sh output
+
+```
+
+</CH.Code>
+
+</CH.Spotlight>
