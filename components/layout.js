@@ -1,6 +1,24 @@
 import Head from "next/head";
+import Script from "next/script";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 export default function Layout({ children }) {
+  const router = useRouter();
+  useEffect(
+    function sendGoatCounterEventsOnRoute() {
+      const handleRouteChange = (path) => {
+        window?.goatcounter?.count?.({
+          path,
+        });
+      };
+      router.events.on("routeChangeComplete", handleRouteChange);
+      return () => {
+        router.events.off("routeChangeComplete", handleRouteChange);
+      };
+    },
+    [router.events]
+  );
   return (
     <div className="font-sans flex flex-col items-center mx-auto px-4 sm:px-6 lg:px-8 mt-1">
       <Head>
@@ -30,6 +48,13 @@ export default function Layout({ children }) {
         />
       </Head>
       <main>{children}</main>
+
+      <Script
+        async
+        data-goatcounter="https://web3byexample.goatcounter.com/count"
+        src="//gc.zgo.at/count.js"
+        strategy="afterInteractive"
+      />
     </div>
   );
 }
