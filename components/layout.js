@@ -14,7 +14,7 @@ export default function Layout({ children }) {
           content="A hands-on introduction to web3 development using annotated example programs."
         />
         {/* Twitter */}
-        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:card" content="summary" />
         <meta name="twitter:site" content="@dao_leno" />
         <meta name="twitter:creator" content="@dao_leno" />
         <meta name="twitter:title" content="Web3 by Example" />
