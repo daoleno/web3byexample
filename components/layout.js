@@ -9,10 +9,9 @@ export default function Layout({ children }) {
         <meta property="og:title" content="Web3 by Example" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://web3byexample.com" />
-        <meta property="og:image" content="https://web3byexample.com/og.png" />
         <meta
           property="og:description"
-          content="A collection of web3 examples"
+          content="A hands-on introduction to web3 development using annotated example programs."
         />
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
@@ -21,12 +20,14 @@ export default function Layout({ children }) {
         <meta name="twitter:title" content="Web3 by Example" />
         <meta
           name="twitter:description"
-          content="A collection of web3 examples"
+          content="A hands-on introduction to web3 development using annotated example programs."
         />
-        <meta name="twitter:image" content="https://web3byexample.com/og.png" />
 
         <title>Web3 by Example</title>
-        <meta name="description" content="A collection of web3 examples" />
+        <meta
+          name="description"
+          content="A hands-on introduction to web3 development using annotated example programs."
+        />
       </Head>
       <main>{children}</main>
     </div>
