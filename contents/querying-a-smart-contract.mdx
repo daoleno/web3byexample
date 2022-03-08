@@ -6,30 +6,15 @@ In this example we’ll see how to call a smart contract function from JavaScrip
 
 ```js query-contract.js
 const { ethers } = require("ethers");
+const fs = require("fs");
 
 (async () => {
-  const abi = [
-    {
-      inputs: [],
-      name: "get",
-      outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-      stateMutability: "view",
-      type: "function",
-    },
-    {
-      inputs: [{ internalType: "uint256", name: "x", type: "uint256" }],
-      name: "set",
-      outputs: [],
-      stateMutability: "nonpayable",
-      type: "function",
-    },
-  ];
-
-  const address = "0x4887B56a6ec7E25e0061d58194BB76e3078153f4";
+  const abi = JSON.parse(fs.readFileSync("storage_sol_SimpleStorage.abi"));
+  const address = "0x4deA5308A17Bc20589802f3E2C23e79Ba044d497";
   const provider = new ethers.providers.AlchemyProvider("goerli");
   const instance = new ethers.Contract(address, abi, provider);
 
-  const result = await instance.get();
+  const result = await instance.getValue();
   console.log(result.toString());
 })();
 ```
@@ -38,7 +23,7 @@ const { ethers } = require("ethers");
 
 ```sh output
 ➜ node query-contract.js
-0
+Hello, world!
 ```
 
 </CH.Code>
@@ -47,26 +32,26 @@ const { ethers } = require("ethers");
 
 After loading the smart contract, we can call a function using **instance**.
 
-```js query-contract.js focus=4:23
+```js query-contract.js focus=5:8
 
 ```
 
 ---
 
-In the <ins>[SimpleStore](/smart-contract-compilation-abi)</ins> contract, we have a function called `get()` that returns the current value.
+In the <ins>[SimpleStore](/smart-contract-compilation-abi)</ins> contract, we have a function called `getValue()` that returns the current value.
 Let's call it.
 
-```js query-contract.js focus=25
+```js query-contract.js focus=10
 
 ```
 
 ---
 
-You will see the result is 0 because we haven't set a value yet. But it's a successful call!
+You will see the result is "Hello, world!", which is the value we set when deploying the contract.
 
 <CH.Code>
 
-```js query-contract.js focus=26
+```js query-contract.js focus=11
 
 ```
 

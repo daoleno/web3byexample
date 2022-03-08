@@ -1,4 +1,5 @@
 .next
 examples/.env
+examples/privatekey
 node_modules
 out

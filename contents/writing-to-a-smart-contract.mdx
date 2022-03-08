@@ -6,39 +6,23 @@ In this example we’ll see how to write a smart contract function from JavaScri
 
 ```js write-contract.js
 const { ethers } = require("ethers");
+const fs = require("fs");
 
 (async () => {
-  const abi = [
-    {
-      inputs: [],
-      name: "get",
-      outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-      stateMutability: "view",
-      type: "function",
-    },
-    {
-      inputs: [{ internalType: "uint256", name: "x", type: "uint256" }],
-      name: "set",
-      outputs: [],
-      stateMutability: "nonpayable",
-      type: "function",
-    },
-  ];
-
-  const address = "0x4887B56a6ec7E25e0061d58194BB76e3078153f4";
+  const abi = JSON.parse(fs.readFileSync("storage_sol_SimpleStorage.abi"));
+  const address = "0x4deA5308A17Bc20589802f3E2C23e79Ba044d497";
   const provider = new ethers.providers.AlchemyProvider("goerli");
-  const privateKey =
-    "c1edce0700e9d002c30f15f6de60eb5ffffdeb79629f663d8862aba7af3f689d";
+  const privateKey = fs.readFileSync("privatekey").toString();
   const wallet = new ethers.Wallet(privateKey, provider);
   const instance_rw = new ethers.Contract(address, abi, wallet);
 
-  const tx = await instance_rw.set(42);
+  const tx = await instance_rw.setValue("web3byexample");
   console.log("hash", tx.hash);
 
   const receipt = await tx.wait();
   console.log("status", receipt.status);
 
-  const value = await instance_rw.get();
+  const value = await instance_rw.getValue();
   console.log("value", value.toString());
 })();
 ```
@@ -47,9 +31,9 @@ const { ethers } = require("ethers");
 
 ```sh output
 ➜ node write-contract.js
-hash 0x460a3645a3adcfbc3842920cfe6fbcd7bd048d006d45489b777caf7d520be792
+hash 0x9c6810cf3f53f033ae5c242fac2bd4d8973816156c68c587734c365061301157
 status 1
-value 42
+value web3byexample
 ```
 
 </CH.Code>
@@ -58,20 +42,20 @@ value 42
 
 We will load a read-write contract that has a signer can send transactions.
 
-```js write-contract.js focus=4:26
+```js write-contract.js focus=5:10
 
 ```
 
 ---
 
 In the <ins>[SimpleStore](/smart-contract-compilation-abi)</ins> contract,
-we have a function called `set()` that takes a single parameter _x_.
-We will set the x value to 42.
+we have a function called **setValue()** that takes a single parameter value.
+We will set the value to **web3byexample**.
 This action sends a transaction to the network.
 
 <CH.Code>
 
-```js write-contract.js focus=28:29
+```js write-contract.js focus=12:13
 
 ```
 
@@ -89,7 +73,7 @@ Wait for the transaction to be mined. If the status of receipt is 1, that means 
 
 <CH.Code>
 
-```js write-contract.js focus=31:32
+```js write-contract.js focus=15:16
 
 ```
 
@@ -103,12 +87,12 @@ Wait for the transaction to be mined. If the status of receipt is 1, that means 
 
 ---
 
-After the transaction is mined, we can read the value. See, the value is now 42.
+After the transaction is mined, we can read the value. See, the value is now **web3byexample**.
 That means that the contract has been updated.
 
 <CH.Code>
 
-```js write-contract.js focus=34:35
+```js write-contract.js focus=18:19
 
 ```
 

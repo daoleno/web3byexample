@@ -7,33 +7,19 @@ Now, we will connect to this contract.
 
 ```js load-contract.js
 const { ethers } = require("ethers");
+const fs = require("fs");
 
 (async () => {
-  const abi = [
-    {
-      inputs: [],
-      name: "get",
-      outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-      stateMutability: "view",
-      type: "function",
-    },
-    {
-      inputs: [{ internalType: "uint256", name: "x", type: "uint256" }],
-      name: "set",
-      outputs: [],
-      stateMutability: "nonpayable",
-      type: "function",
-    },
-  ];
-
-  const address = "0x4887B56a6ec7E25e0061d58194BB76e3078153f4";
+  const abi = JSON.parse(fs.readFileSync("storage_sol_SimpleStorage.abi"));
+  const address = "0x4deA5308A17Bc20589802f3E2C23e79Ba044d497";
   const provider = new ethers.providers.AlchemyProvider("goerli");
+
   const instance = new ethers.Contract(address, abi, provider);
   console.log("address", instance.address);
 
-  const privateKey = "your-private-key";
-  const signer = new ethers.Wallet(privateKey, provider);
-  const instance_rw = new ethers.Contract(address, abi, signer);
+  const privateKey = fs.readFileSync("privatekey").toString();
+  const wallet = new ethers.Wallet(privateKey, provider);
+  const instance_rw = new ethers.Contract(address, abi, wallet);
   console.log("signer ", instance_rw.signer.address);
 })();
 ```
@@ -42,7 +28,7 @@ const { ethers } = require("ethers");
 
 ```sh output
 ➜ node load-contract.js
-address 0x4887B56a6ec7E25e0061d58194BB76e3078153f4
+address 0x4deA5308A17Bc20589802f3E2C23e79Ba044d497
 signer  0x67CF3bF40b2b3b3D68F6c361AEf81F8AEb2dB637
 ```
 
@@ -52,7 +38,7 @@ signer  0x67CF3bF40b2b3b3D68F6c361AEf81F8AEb2dB637
 
 Creating a new instance of a Contract connects to an existing contract by specifying its **address** on the blockchain, its **abi** (used to populate the class' methods) and a **providerOrSigner**.
 
-```js load-contract.js focus=4:22,26:27
+```js load-contract.js focus=5:7
 
 ```
 
@@ -72,7 +58,7 @@ If a Provider is given, the contract has only read-only access, allows:
 
 <CH.Code>
 
-```js load-contract.js focus=23:24
+```js load-contract.js focus=9:10
 
 ```
 
@@ -94,7 +80,7 @@ While a Signer(wallet) offers access to state manipulating methods.
 
 <CH.Code>
 
-```js load-contract.js focus=28:29
+```js load-contract.js focus=12:15
 
 ```
 

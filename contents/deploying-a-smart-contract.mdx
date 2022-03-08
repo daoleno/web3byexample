@@ -8,35 +8,18 @@ Mainly, the bytecode (more specifically the initcode) of a contract is required.
 
 ```js deploy-contract.js
 const { ethers } = require("ethers");
+const fs = require("fs");
 
 (async () => {
-  const abi = [
-    {
-      inputs: [],
-      name: "get",
-      outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-      stateMutability: "view",
-      type: "function",
-    },
-    {
-      inputs: [{ internalType: "uint256", name: "x", type: "uint256" }],
-      name: "set",
-      outputs: [],
-      stateMutability: "nonpayable",
-      type: "function",
-    },
-  ];
+  const abi = JSON.parse(fs.readFileSync("storage_sol_SimpleStorage.abi"));
+  const bytecode = fs.readFileSync("storage_sol_SimpleStorage.bin").toString();
 
-  const bytecode =
-    "608060405234801561001057600080fd5b50610150806100206000396000f3fe608060405234801561001057600080fd5b50600436106100365760003560e01c806360fe47b11461003b5780636d4ce63c14610057575b600080fd5b610055600480360381019061005091906100c3565b610075565b005b61005f61007f565b60405161006c91906100ff565b60405180910390f35b8060008190555050565b60008054905090565b600080fd5b6000819050919050565b6100a08161008d565b81146100ab57600080fd5b50565b6000813590506100bd81610097565b92915050565b6000602082840312156100d9576100d8610088565b5b60006100e7848285016100ae565b91505092915050565b6100f98161008d565b82525050565b600060208201905061011460008301846100f0565b9291505056fea2646970667358221220377e5066e96b387d762576dadb25e34d4a0946bc17a43f5e156e9c383ef5035d64736f6c634300080c0033";
-
+  const privateKey = fs.readFileSync("privatekey").toString();
   const provider = new ethers.providers.AlchemyProvider("goerli");
-  const privateKey = "your-private-key";
   const wallet = new ethers.Wallet(privateKey, provider);
 
   const factory = new ethers.ContractFactory(abi, bytecode, wallet);
-
-  const contract = await factory.deploy();
+  const contract = await factory.deploy("Hello, world!");
   console.log("address", contract.address);
 
   const receipt = await contract.deployTransaction.wait();
@@ -48,21 +31,21 @@ const { ethers } = require("ethers");
 
 ```sh output
 ➜ node deploy-contract.js
-address 0x4887B56a6ec7E25e0061d58194BB76e3078153f4
+address 0x4deA5308A17Bc20589802f3E2C23e79Ba044d497
 receipt {
   to: null,
   from: '0x67CF3bF40b2b3b3D68F6c361AEf81F8AEb2dB637',
-  contractAddress: '0x4887B56a6ec7E25e0061d58194BB76e3078153f4',
-  transactionIndex: 8,
-  gasUsed: BigNumber { _hex: '0x01ead5', _isBigNumber: true },
+  contractAddress: '0x4deA5308A17Bc20589802f3E2C23e79Ba044d497',
+  transactionIndex: 2,
+  gasUsed: BigNumber { _hex: '0x0635bd', _isBigNumber: true },
   logsBloom: '0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000',
-  blockHash: '0x27044e46462178e85b8acd624553f534a0d34aaa7eec612f50f4dc152c8c68d2',
-  transactionHash: '0xc30ea2bb39ed641bd543a941a0250aff70b48de0c15ecb1d3e5c0d4b75f46131',
+  blockHash: '0x9282b3f9a6868cf81c5252f949d161cf03a45ae15708030e24dab28467b667ad',
+  transactionHash: '0xe0708303bd21a508314ef0c3f3b6cc6b628f5bae43347b0f5466b0c2b8af895f',
   logs: [],
-  blockNumber: 6464996,
+  blockNumber: 6499060,
   confirmations: 1,
-  cumulativeGasUsed: BigNumber { _hex: '0x0823af', _isBigNumber: true },
-  effectiveGasPrice: BigNumber { _hex: '0x9502f907', _isBigNumber: true },
+  cumulativeGasUsed: BigNumber { _hex: '0x0a238f', _isBigNumber: true },
+  effectiveGasPrice: BigNumber { _hex: '0x9502f909', _isBigNumber: true },
   status: 1,
   type: 2,
   byzantium: true,
@@ -76,7 +59,7 @@ receipt {
 
 In <ins>[previous example](/smart-contract-compilation-abi)</ins>, we have compiled the contract and got the **abi** and **bytecode**.
 
-```js deploy-contract.js focus=4:22
+```js deploy-contract.js focus=5:6
 
 ```
 
@@ -84,7 +67,7 @@ In <ins>[previous example](/smart-contract-compilation-abi)</ins>, we have compi
 
 Create a wallet that can sign transactions.
 
-```js deploy-contract.js focus=24:26
+```js deploy-contract.js focus=8:10
 
 ```
 
@@ -93,7 +76,7 @@ Create a wallet that can sign transactions.
 Create a new instance of a ContractFactory for the contract described by the interface and bytecode initcode.
 The **Contract Factory** sends a special type of transaction, an initcode transaction (i.e. the to field is null, and the data field is the initcode) where the initcode will be evaluated and the result becomes the new code to be deployed as a new contract.
 
-```js deploy-contract.js focus=28
+```js deploy-contract.js focus=12
 
 ```
 
@@ -104,7 +87,7 @@ The address is available immediately, but the contract is NOT deployed yet.
 
 <CH.Code>
 
-```js deploy-contract.js focus=30:31
+```js deploy-contract.js focus=13:14
 
 ```
 
@@ -126,7 +109,7 @@ Wait until the transaction is mined (i.e. contract is deployed)
 
 <CH.Code>
 
-```js deploy-contract.js focus=33:34
+```js deploy-contract.js focus=16:17
 
 ```
 
