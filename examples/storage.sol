@@ -2,36 +2,25 @@
 pragma solidity >=0.4.16 <0.9.0;
 
 contract SimpleStorage {
-    uint256 storedData;
+    event ValueChanged(
+        address indexed author,
+        uint256 oldValue,
+        uint256 newValue
+    );
 
-    function set(uint256 x) public {
-        storedData = x;
+    uint256 _value;
+
+    constructor(uint256 value) {
+        emit ValueChanged(msg.sender, _value, value);
+        _value = value;
     }
 
-    function get() public view returns (uint256) {
-        return storedData;
+    function getValue() public view returns (uint256) {
+        return _value;
+    }
+
+    function setValue(uint256 value) public {
+        emit ValueChanged(msg.sender, _value, value);
+        _value = value;
     }
 }
-
-// pragma solidity ^0.4.24;
-
-// contract SimpleStorage {
-
-//     event ValueChanged(address indexed author, string oldValue, string newValue);
-
-//     string _value;
-
-//     constructor(string value) public {
-//         emit ValueChanged(msg.sender, _value, value);
-//         _value = value;
-//     }
-
-//     function getValue() view public returns (string) {
-//         return _value;
-//     }
-
-//     function setValue(string value) public {
-//         emit ValueChanged(msg.sender, _value, value);
-//         _value = value;
-//     }
-// }
